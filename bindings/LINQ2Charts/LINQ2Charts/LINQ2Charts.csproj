@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{776D4B3A-63AB-4120-BD72-9F182990AF6F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>System.Linq.Charting</RootNamespace>
+    <AssemblyName>LINQ2Charts</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChartArea\ChartArea\ChartArea.cs" />
+    <Compile Include="ChartArea\ChartArea\CollectionInitializer.cs" />
+    <Compile Include="ChartArea\ChartArea\Extensions.cs" />
+    <Compile Include="ChartArea\Data\CollectionInitializer.cs" />
+    <Compile Include="ChartArea\Data\Extensions.cs" />
+    <Compile Include="ChartArea\Data\Data.cs" />
+    <Compile Include="Chart\Chart\Chart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Chart\Chart\CollectionInitializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Chart\Chart\Extensions.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Chart\Data\CollectionInitializer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Chart\Data\Data.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Chart\Data\Extensions.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Enums\LabelValueType.cs" />
+    <Compile Include="Enums\OpenCloseStyle.cs" />
+    <Compile Include="Enums\PyramidLabelStyle.cs" />
+    <Compile Include="Enums\PyramidOutsideLabelPlacement.cs" />
+    <Compile Include="Enums\PyramidValueType.cs" />
+    <Compile Include="Enums\ShowOpenClose.cs" />
+    <Compile Include="Helpers\DataPointExtensions.cs" />
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\Generate.cs" />
+    <Compile Include="Helpers\Linq\Extensions.cs" />
+    <Compile Include="Helpers\Linq\KeyValuePair.cs" />
+    <Compile Include="Helpers\Linq\Linq.cs" />
+    <Compile Include="Helpers\Linq\_Grouping.cs" />
+    <Compile Include="Helpers\Properties.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\Area\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\Area\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\Area\Series\Series.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\Area\Series\CustomProperties.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\SplineOr_\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\SplineOr_\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\SplineOr_\Series\CustomProperties.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\SplineOr_\Series\Series.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Series\CustomProperties.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Series\Series.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\SplineOr_\Spline, SplineArea\SplineArea\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\SplineOr_\Spline, SplineArea\SplineArea\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\SplineOr_\Spline, SplineArea\SplineArea\Series\Series.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\SplineOr_\Spline, SplineArea\SplineArea\Series\CustomProperties.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\SplineOr_\Spline, SplineArea\Spline\Series\CustomProperties.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\SplineOr_\Spline, SplineArea\Spline\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\SplineOr_\Spline, SplineArea\Spline\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\StepLine\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\StepLine\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\StepLine\Series\CustomProperties.cs" />
+    <Compile Include="Series\Bar\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Bar\DataPoint\DataPoint.cs" />
+    <Compile Include="Enums\BarLabelStyle.cs" />
+    <Compile Include="Series\Bar\Series\CustomProperties.cs" />
+    <Compile Include="Series\Bar\Series\Series.cs" />
+    <Compile Include="Series\CandleStick\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\CandleStick\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\CandleStick\Series\CustomProperties.cs" />
+    <Compile Include="Series\CandleStick\Series\Series.cs" />
+    <Compile Include="Series\Column\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Column\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Column\Series\CustomProperties.cs" />
+    <Compile Include="Enums\DrawSideBySide.cs" />
+    <Compile Include="Series\Column\Series\Series.cs" />
+    <Compile Include="Enums\EmptyPointValue.cs" />
+    <Compile Include="Enums\LabelStyle.cs" />
+    <Compile Include="Enums\PieDrawingStyle.cs" />
+    <Compile Include="Enums\PolarDrawingStyle.cs" />
+    <Compile Include="Enums\RadarDrawingStyle.cs" />
+    <Compile Include="Enums\CircularLabelStyle.cs" />
+    <Compile Include="Enums\AreaDrawingStyle.cs" />
+    <Compile Include="Series\Point, Bubble\PointOr_\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Point, Bubble\PointOr_\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Point, Bubble\PointOr_\Series\CustomProperties.cs" />
+    <Compile Include="Series\Point, Bubble\PointOr_\Series\Series.cs" />
+    <Compile Include="Series\Pie, Doughnut\PieOr_\Pie, Doughnut\Pie\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Pie, Doughnut\PieOr_\Pie, Doughnut\Pie\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Pie, Doughnut\PieOr_\Pie, Doughnut\Doughnut\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Pie, Doughnut\PieOr_\Pie, Doughnut\Doughnut\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Pie, Doughnut\PieOr_\Pie, Doughnut\Pie\Series\CustomProperties.cs" />
+    <Compile Include="Series\Pie, Doughnut\PieOr_\Pie, Doughnut\Pie\Series\Series.cs" />
+    <Compile Include="Series\Range, SplineRange\RangeOr_\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Range, SplineRange\RangeOr_\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Range, SplineRange\RangeOr_\Series\CustomProperties.cs" />
+    <Compile Include="Series\Range, SplineRange\RangeOr_\Series\Series.cs" />
+    <Compile Include="Series\Range, SplineRange\SplineRange\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Range, SplineRange\SplineRange\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Series\Series\Dump.cs" />
+    <Compile Include="Series\Series\Series\Hide.cs" />
+    <Compile Include="Series\StackedArea, 100%25StackedArea\StackedAreaOr_\StackedArea, 100%25StackedArea\100%25StackedArea\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\StackedArea, 100%25StackedArea\StackedAreaOr_\StackedArea, 100%25StackedArea\100%25StackedArea\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\StackedArea, 100%25StackedArea\StackedAreaOr_\StackedArea, 100%25StackedArea\100%25StackedArea\Series\CustomProperties.cs" />
+    <Compile Include="Series\StackedArea, 100%25StackedArea\StackedAreaOr_\StackedArea, 100%25StackedArea\100%25StackedArea\Series\Series.cs" />
+    <Compile Include="Series\StackedArea, 100%25StackedArea\StackedAreaOr_\StackedArea, 100%25StackedArea\StackedArea\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\StackedArea, 100%25StackedArea\StackedAreaOr_\StackedArea, 100%25StackedArea\StackedArea\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\StackedArea, 100%25StackedArea\StackedAreaOr_\StackedArea, 100%25StackedArea\StackedArea\Series\CustomProperties.cs" />
+    <Compile Include="Series\StackedArea, 100%25StackedArea\StackedAreaOr_\StackedArea, 100%25StackedArea\StackedArea\Series\Series.cs" />
+    <Compile Include="Series\StackedBar, 100%25StackedBar\StackedBarOr_\StackedBar, 100%25StackedBar\100%25StackedBar\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\StackedBar, 100%25StackedBar\StackedBarOr_\StackedBar, 100%25StackedBar\100%25StackedBar\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\StackedBar, 100%25StackedBar\StackedBarOr_\StackedBar, 100%25StackedBar\100%25StackedBar\Series\CustomProperties.cs" />
+    <Compile Include="Series\StackedBar, 100%25StackedBar\StackedBarOr_\StackedBar, 100%25StackedBar\100%25StackedBar\Series\Series.cs" />
+    <Compile Include="Series\StackedBar, 100%25StackedBar\StackedBarOr_\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\StackedBar, 100%25StackedBar\StackedBarOr_\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\StackedBar, 100%25StackedBar\StackedBarOr_\Series\CustomProperties.cs" />
+    <Compile Include="Series\StackedBar, 100%25StackedBar\StackedBarOr_\Series\Series.cs" />
+    <Compile Include="Series\StackedColumn, 100%25StackedColumn\StackedColumnOr_\StackedColumn, 100%25StackedColumn\100%25StackedColumn\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\StackedColumn, 100%25StackedColumn\StackedColumnOr_\StackedColumn, 100%25StackedColumn\100%25StackedColumn\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\StackedColumn, 100%25StackedColumn\StackedColumnOr_\StackedColumn, 100%25StackedColumn\100%25StackedColumn\Series\CustomProperties.cs" />
+    <Compile Include="Series\StackedColumn, 100%25StackedColumn\StackedColumnOr_\StackedColumn, 100%25StackedColumn\100%25StackedColumn\Series\Series.cs" />
+    <Compile Include="Series\ErrorBar\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\ErrorBar\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\ErrorBar\Series\CustomProperties.cs" />
+    <Compile Include="Enums\ErrorBarCenterMarkerStyle.cs" />
+    <Compile Include="Enums\ErrorBarStyle.cs" />
+    <Compile Include="Enums\ErrorBarType.cs" />
+    <Compile Include="Series\ErrorBar\Series\Series.cs" />
+    <Compile Include="Series\Kagi\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Kagi\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Kagi\Series\CustomProperties.cs" />
+    <Compile Include="Series\Kagi\Series\Series.cs" />
+    <Compile Include="Series\PointAndFigure\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\PointAndFigure\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\PointAndFigure\Series\CustomProperties.cs" />
+    <Compile Include="Series\PointAndFigure\Series\Series.cs" />
+    <Compile Include="Series\RangeColumn\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\RangeColumn\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\RangeColumn\Series\CustomProperties.cs" />
+    <Compile Include="Series\RangeColumn\Series\Series.cs" />
+    <Compile Include="Series\RangeBar\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\RangeBar\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\RangeBar\Series\CustomProperties.cs" />
+    <Compile Include="Series\RangeBar\Series\Series.cs" />
+    <Compile Include="Series\Renko\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Renko\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Renko\Series\CustomProperties.cs" />
+    <Compile Include="Series\Renko\Series\Series.cs" />
+    <Compile Include="Series\StackedColumn, 100%25StackedColumn\StackedColumnOr_\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\StackedColumn, 100%25StackedColumn\StackedColumnOr_\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\StackedColumn, 100%25StackedColumn\StackedColumnOr_\Series\CustomProperties.cs" />
+    <Compile Include="Series\StackedColumn, 100%25StackedColumn\StackedColumnOr_\Series\Series.cs" />
+    <Compile Include="Series\ThreeLineBreak\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\ThreeLineBreak\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\ThreeLineBreak\Series\CustomProperties.cs" />
+    <Compile Include="Series\ThreeLineBreak\Series\Series.cs" />
+    <Compile Include="Series\StockChart\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\StockChart\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\StockChart\Series\CustomProperties.cs" />
+    <Compile Include="Series\StockChart\Series\Series.cs" />
+    <Compile Include="Series\StackedBar, 100%25StackedBar\StackedBarOr_\StackedBar, 100%25StackedBar\StackedBar\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\StackedBar, 100%25StackedBar\StackedBarOr_\StackedBar, 100%25StackedBar\StackedBar\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\StackedBar, 100%25StackedBar\StackedBarOr_\StackedBar, 100%25StackedBar\StackedBar\Series\CustomProperties.cs" />
+    <Compile Include="Series\StackedBar, 100%25StackedBar\StackedBarOr_\StackedBar, 100%25StackedBar\StackedBar\Series\Series.cs" />
+    <Compile Include="Series\StackedArea, 100%25StackedArea\StackedAreaOr_\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\StackedArea, 100%25StackedArea\StackedAreaOr_\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\StackedArea, 100%25StackedArea\StackedAreaOr_\Series\CustomProperties.cs" />
+    <Compile Include="Series\StackedArea, 100%25StackedArea\StackedAreaOr_\Series\Series.cs" />
+    <Compile Include="Series\Range, SplineRange\Range\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Range, SplineRange\Range\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Range, SplineRange\Range\Series\CustomProperties.cs" />
+    <Compile Include="Series\Range, SplineRange\Range\Series\Series.cs" />
+    <Compile Include="Series\Polar\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Polar\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Polar\Series\CustomProperties.cs" />
+    <Compile Include="Series\Polar\Series\Series.cs" />
+    <Compile Include="Series\Radar\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Radar\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Radar\Series\CustomProperties.cs" />
+    <Compile Include="Series\Radar\Series\Series.cs" />
+    <Compile Include="Series\Point, Bubble\PointOr_\Point, Bubble\Bubble\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Point, Bubble\PointOr_\Point, Bubble\Bubble\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Point, Bubble\PointOr_\Point, Bubble\Bubble\Series\CustomProperties.cs" />
+    <Compile Include="Series\Point, Bubble\PointOr_\Point, Bubble\Bubble\Series\Series.cs" />
+    <Compile Include="Series\FastPoint\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\FastPoint\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\FastPoint\Series\CustomProperties.cs" />
+    <Compile Include="Series\FastPoint\Series\Series.cs" />
+    <Compile Include="Series\FastLine\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\FastLine\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\FastLine\Series\CustomProperties.cs" />
+    <Compile Include="Series\FastLine\Series\Series.cs" />
+    <Compile Include="Series\Point, Bubble\PointOr_\Point, Bubble\Point\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Point, Bubble\PointOr_\Point, Bubble\Point\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Point, Bubble\PointOr_\Point, Bubble\Point\Series\CustomProperties.cs" />
+    <Compile Include="Series\Point, Bubble\PointOr_\Point, Bubble\Point\Series\Series.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\SplineOr_\Spline, SplineArea\Spline\Series\Series.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\StepLine\Series\Series.cs" />
+    <Compile Include="Enums\Funnel3DDrawingStyle.cs" />
+    <Compile Include="Enums\FunnelInsideLabelAlignment.cs" />
+    <Compile Include="Enums\FunnelLabelStyle.cs" />
+    <Compile Include="Enums\FunnelOutsideLabelPlacement.cs" />
+    <Compile Include="Enums\FunnelStyle.cs" />
+    <Compile Include="Series\Pyramid\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Pyramid\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Pyramid\Series\CustomProperties.cs" />
+    <Compile Include="Enums\Pyramid3DDrawingStyle.cs" />
+    <Compile Include="Enums\PyramidInsideLabelAlignment.cs" />
+    <Compile Include="Series\Pyramid\Series\Series.cs" />
+    <Compile Include="Series\Pie, Doughnut\PieOr_\Pie, Doughnut\Doughnut\Series\CustomProperties.cs" />
+    <Compile Include="Series\Pie, Doughnut\PieOr_\Pie, Doughnut\Doughnut\Series\Series.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\Line\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\Line\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\Line\Series\CustomProperties.cs" />
+    <Compile Include="Series\Area, Line, StepLine, Spline, SplineArea\LineOr_\Area, Line, StepLine\Line\Series\Series.cs" />
+    <Compile Include="Series\Pie, Doughnut\PieOr_\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Pie, Doughnut\PieOr_\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Pie, Doughnut\PieOr_\Series\CustomProperties.cs" />
+    <Compile Include="Series\Funnel\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Funnel\DataPoint\DataPoint.cs" />
+    <Compile Include="Series\Funnel\Series\CustomProperties.cs" />
+    <Compile Include="Series\Funnel\Series\Series.cs" />
+    <Compile Include="Series\Range, SplineRange\SplineRange\Series\CustomProperties.cs" />
+    <Compile Include="Series\Range, SplineRange\SplineRange\Series\Series.cs" />
+    <Compile Include="Series\StackedColumn, 100%25StackedColumn\StackedColumnOr_\StackedColumn, 100%25StackedColumn\StackedColumn\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\StackedColumn, 100%25StackedColumn\StackedColumnOr_\StackedColumn, 100%25StackedColumn\StackedColumn\DataPoint\DataPoint.cs" />
+    <Compile Include="Enums\DrawingStyle.cs" />
+    <Compile Include="Series\StackedColumn, 100%25StackedColumn\StackedColumnOr_\StackedColumn, 100%25StackedColumn\StackedColumn\Series\CustomProperties.cs" />
+    <Compile Include="Series\StackedColumn, 100%25StackedColumn\StackedColumnOr_\StackedColumn, 100%25StackedColumn\StackedColumn\Series\Series.cs" />
+    <Compile Include="Series\Series\DataPoint\CustomProperties.cs" />
+    <Compile Include="Series\Series\Data\CollectionInitializer.cs" />
+    <Compile Include="Series\Series\Data\Extensions.cs" />
+    <Compile Include="Series\Series\Data\Data.cs" />
+    <Compile Include="Series\Pie, Doughnut\PieOr_\Series\Series.cs" />
+    <Compile Include="Series\Series\Series\CollectionInitializer.cs" />
+    <Compile Include="Series\Series\Series\Extensions.cs" />
+    <Compile Include="Series\Series\Series\CustomProperties.cs" />
+    <Compile Include="Series\Series\Series\Series.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Series\Series\DataPoint\DataPoint.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Chart\Chart\Chart.resx">
+      <DependentUpon>Chart.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<Include>
+  <?define ProductShortVersion="1.0" ?>
+  
+  <?if $(var.TxRelease) = "BETA" ?>
+  <?define ProductSDKVersionName="LINQ to Traces SDK v$(var.ProductShortVersion) Beta" ?>
+  <?else ?>
+  <?define ProductSDKVersionName="LINQ to Traces SDK v$(var.ProductShortVersion)" ?>
+  <?endif ?>
+
+  <?define ProductName="LINQ to Traces SDK" ?>
+  <?define ProductManufacturer="Microsoft Corporation" ?>
+  <?define ProductSDKName="LINQ to Traces" ?>
+</Include>

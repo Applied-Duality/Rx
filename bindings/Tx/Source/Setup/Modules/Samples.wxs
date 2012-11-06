@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include ..\Includes\ProductInfo.wxi ?>
+
+  <Module Id="TxSamplesModule" Language="1033" Version="$(var.ProductVersion)">
+    <Package Id="bf015329-de01-4552-999e-d02c9d09b3a3"
+             Description="Samples"
+             Manufacturer="$(var.ProductManufacturer)"
+             InstallerVersion="200" />
+
+    <?include ..\Includes\ProductFolders.wxi ?>
+
+    <DirectoryRef Id="TARGETDIR">
+      <Directory Id="ProgramMenuFolder" Name="PMenu">
+        <Directory Id="TxStartMenu" Name="LINQ to Traces SDK"/>
+      </Directory>
+    </DirectoryRef>
+
+    <DirectoryRef Id="SDKVersionFolder">
+      <Directory Id="SDKSamplesFolder"  Name="Samples"  />
+    </DirectoryRef>
+    
+    <DirectoryRef Id="SDKSamplesFolder">
+
+      <Component Id="Tx.Samples.Introduction" Guid="*">
+        <File Id="Tx.Introduction.zip" Name="Introduction.zip" Source="Samples\Introduction.zip" />
+      </Component>
+
+      <Component Id="Tx.Samples.LINQPad" Guid="*">
+        <File Id="Tx.LINQPad.zip" Name="LINQPad.zip" Source="Samples\LINQPad.zip" />
+      </Component>
+
+      <!--
+      NOTE: This component has the RemoveFolder entry to deal with ICE64 errors.
+            When removing this component, make sure another one inherits the RemoveFolder authoring.
+      -->
+      <Component Id="Tx.Samples.ReadMe" Guid="*">
+        <File Id="Tx.TxReadMe.txt" Name="TxReadMe.txt" Source="Samples\ReadMe.txt" />
+        <Shortcut Id="Tx.ReadMeShortcut"
+            Directory="TxStartMenu"
+            Advertise="yes"
+            Name="ReadMe"
+            Icon="ReadMe.txt.exe">
+          <Icon Id="ReadMe.txt.exe" SourceFile="$(env.SystemRoot)\notepad.exe" />
+        </Shortcut>
+        <RemoveFolder Id="DeleteShortcutFolder" Directory="TxStartMenu" On="uninstall"/>
+      </Component>
+      
+      <Component Id="Tx.Samples.LINQToTraces" Guid="*">
+        <File Id="Tx.LINQtoTraces.pptx" Name="LINQtoTraces.pptx" Source="Samples\LINQtoTraces.pptx" />
+        <Shortcut Id="Tx.DeckShortcut"
+             Directory="TxStartMenu"
+             Advertise="yes"
+             Name="Overview Slides" />
+      </Component>
+
+      <Component Id="Tx.Samples.Help" Guid="*">
+        <File Id="Tx.TxHelp.chm" Name="TxHelp.chm" Source="Samples\TxHelp.chm" />
+        <Shortcut Id="Tx.HelpShortcut"
+             Directory="TxStartMenu"
+             Advertise="yes"
+             Name="Documentation"
+             Icon="TxHelp.chm.exe">
+          <Icon Id="TxHelp.chm.exe" SourceFile="$(env.SystemRoot)\hh.exe" />
+        </Shortcut>
+      </Component>
+
+      <Component Id="Tx.Samples.ZipIt" Guid="*">
+        <File Id="Tx.ZipIt.exe" Name="ZipIt.exe" Source="Samples\ZipIt.exe" />
+      </Component>
+
+      <Component Id="Tx.Samples.ZipLibDll" Guid="*">
+        <File Id="Tx.ZipLib.dll" Name="System.IO.Compression.PreRelease.dll" Source="Samples\System.IO.Compression.PreRelease.dll" />
+      </Component>
+
+      <Component Id="Tx.Samples.ZipLibPDB" Guid="*">
+        <File Id="Tx.ZipLib.pdb" Name="System.IO.Compression.PreRelease.pdb" Source="Samples\System.IO.Compression.PreRelease.pdb" />
+      </Component>
+
+      <Component Id="Tx.Samples.ExtractSamples" Guid="*">
+        <File Id="Tx.ExtractSamples.cmd" Name="ExtractSamples.cmd" Source="Samples\ExtractSamples.cmd" />
+        <Shortcut Id="Tx.ExtractSamplesShortcut"
+            Directory="TxStartMenu"
+            Advertise="yes"
+            Name="Extract the samples"
+            WorkingDirectory="SDKSamplesFolder"/>
+      </Component>
+
+    </DirectoryRef>
+
+  </Module>
+</Wix>

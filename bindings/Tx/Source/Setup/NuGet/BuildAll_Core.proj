@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ProjectToBuild Include="Tx-All.nuproj" />
+    <ProjectToBuild Include="Tx-Core.nuproj" />
+    <ProjectToBuild Include="Tx-Etw.nuproj" />
+    <ProjectToBuild Include="Tx-Etw-TypeGeneration.nuproj" />
+    <ProjectToBuild Include="Tx-XEvent.nuproj" />
+  </ItemGroup>
+  <Target Name="Build">
+    <MSBuild Projects="@(ProjectToBuild)" Targets="Build" />
+  </Target>
+  <Target Name="Clean">
+    <MSBuild Projects="@(ProjectToBuild)" Targets="Clean" />
+  </Target>
+  <Target Name="Rebuild">
+    <MSBuild Projects="@(ProjectToBuild)" Targets="Rebuild" />
+  </Target>
+</Project>

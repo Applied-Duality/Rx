@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<Include>
+  <UIRef Id="WixUI_Mondo" />
+  <WixVariable Id="WixUILicenseRtf" Value="Resources\$(var.TxRelease)\License.rtf" />
+  <WixVariable Id="WixUIBannerBmp" Value="Resources\SetupTitleBar.bmp" />
+  <WixVariable Id="WixUIDialogBmp" Value="Resources\SetupDialog.bmp" />
+  <WixVariable Id="WixUISupportPerMachine" Value="1" />
+  <WixVariable Id="WixUISupportPerUser" Value="0" />
+  <Icon Id="Logo.ico" SourceFile="Resources\Logo.ico"/>
+  <Property Id="ARPPRODUCTICON" Value="Logo.ico" />
+</Include>

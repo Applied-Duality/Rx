@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_IntermediateOutputPath>$(MSBuildProjectDirectory)\$(IntermediateOutputPath)\$(Configuration)\$(PackageName)</_IntermediateOutputPath>
+    <NuGetExePath>$(MSBuildProjectDirectory)\..\..\..\Tools\nuget.exe</NuGetExePath>
+    <PublishScript>$(MSBuildProjectDirectory)\publish.bat</PublishScript>
+    <Version>$(BuildNumber)</Version>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TxRelease)' == 'BETA' ">
+    <Version>$(BuildNumber)-beta</Version>
+  </PropertyGroup>
+  <Target Name="Build" DependsOnTargets="Clean">
+    <MakeDir Directories="$(_IntermediateOutputPath)" />
+    <Copy SourceFiles="@(Compile->'Specs\$(Configuration)\%(Filename)%(Extension)')" DestinationFiles="@(Compile->'$(_IntermediateOutputPath)\%(Filename)%(Extension)')">
+      <Output TaskParameter="CopiedFiles" ItemName="SpecFiles"/>
+    </Copy>
+    <XmlPoke XmlInputPath="@(SpecFiles)" Query="/package/metadata/version" Value="$(Version)" />
+    <XmlPoke XmlInputPath="@(SpecFiles)" Query="/package/metadata/dependencies/dependency[starts-with(@id,'Tx')]/@version" Value="$(Version)" />
+    <Exec Command="&quot;$(BinariesHarvestCommand)&quot; &quot;$(BinariesLayoutFolder)&quot; &quot;$(_IntermediateOutputPath)&quot; $(Configuration)" />
+    <Exec Command="&quot;$(NuGetExePath)&quot; pack @(Compile)" WorkingDirectory="$(_IntermediateOutputPath)" />
+    <CreateItem Include="$(_IntermediateOutputPath)\*.nupkg">
+      <Output TaskParameter="Include" ItemName="PackageFiles" />
+    </CreateItem>
+    <Copy SourceFiles="@(PackageFiles)" DestinationFolder="$(OutDir)" />
+    <Copy SourceFiles="$(NuGetExePath)" DestinationFolder="$(OutDir)" />
+    <Copy SourceFiles="$(PublishScript)" DestinationFolder="$(OutDir)" />
+  </Target>
+  <Target Name="Clean">
+    <RemoveDir Directories="$(_IntermediateOutputPath)" />
+  </Target>
+  <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
+</Project>
