@@ -1,3 +1,0 @@
-﻿http://GEORGIS5:9000/Actor0/
-http://GEORGIS2:9000/Actor1/
-http://GEORGIS4:9000/Actor2/
