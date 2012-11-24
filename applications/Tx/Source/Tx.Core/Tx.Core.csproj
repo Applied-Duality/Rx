@@ -11,13 +11,9 @@
     <RootNamespace>System.Reactive</RootNamespace>
     <AssemblyName>Tx.Core</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
     <TargetFrameworkProfile />
   </PropertyGroup>
-  <Import Project="..\Common.targets" />
+  <Import Project="..\..\Common.targets" />
   <PropertyGroup>
     <DocumentationFile>$(OutputPath)\$(AssemblyName).XML</DocumentationFile>
   </PropertyGroup>
@@ -71,6 +67,7 @@
     </None>
     <None Include="Tx.All.nuspec">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Tx.Core.Layout.cmd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

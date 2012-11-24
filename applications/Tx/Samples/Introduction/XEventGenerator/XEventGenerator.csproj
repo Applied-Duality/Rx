@@ -10,50 +10,24 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XEventGenerator</RootNamespace>
     <AssemblyName>XEventGenerator</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+  <Import Project="..\..\..\Common.targets" />
   <ItemGroup>
     <Reference Include="Accessibility">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Microsoft.SqlServer.XE.Core, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=AMD64" />
-    <Reference Include="Microsoft.SqlServer.XEvent, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=AMD64" />
-    <Reference Include="Microsoft.SqlServer.XEvent.Configuration, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=AMD64" />
-    <Reference Include="Microsoft.SqlServer.XEvent.Linq, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=AMD64" />
-    <Reference Include="Microsoft.SqlServer.XEvent.Targets, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=AMD64" />
-    <Reference Include="Microsoft.XEvent, Culture=neutral, PublicKeyToken=3d3a4b0768c9178e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.XE.Core" />
+    <Reference Include="Microsoft.SqlServer.XEvent" />
+    <Reference Include="Microsoft.SqlServer.XEvent.Configuration" />
+    <Reference Include="Microsoft.SqlServer.XEvent.Linq" />
+    <Reference Include="Microsoft.SqlServer.XEvent.Targets" />
+    <Reference Include="Microsoft.XEvent" />
     <Reference Include="System" />
-    <Reference Include="System.Reactive.Core, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Reactive.Interfaces, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Reactive.Linq, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Reactive.PlatformServices, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Reactive.Tx, Culture=neutral, PublicKeyToken=3d3a4b0768c9178e, processorArchitecture=MSIL" />
+    <Reference Include="System.Reactive.Core" />
+    <Reference Include="System.Reactive.Interfaces" />
+    <Reference Include="System.Reactive.Linq" />
+    <Reference Include="System.Reactive.PlatformServices" />
+    <Reference Include="System.Reactive.Tx" />
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>

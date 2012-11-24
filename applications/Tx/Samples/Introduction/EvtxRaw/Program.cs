@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
-using Microsoft.Evtx;
+using Tx.Windows;
 
 namespace TxSamples.EvtxRaw
 {
@@ -12,6 +12,8 @@ namespace TxSamples.EvtxRaw
         {
             IEnumerable<EventRecord> evtx = EvtxEnumerable.FromFiles(@"..\..\..\HTTP_Server.evtx");
             Console.WriteLine(evtx.Count());
+
+            Console.ReadLine();
         }
     }
 }

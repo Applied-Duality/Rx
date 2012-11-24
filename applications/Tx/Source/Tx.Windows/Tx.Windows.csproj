@@ -17,7 +17,7 @@
     <SccProvider>SAK</SccProvider>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-  <Import Project="..\Common.targets" />
+  <Import Project="..\..\Common.targets" />
   <PropertyGroup>
     <DocumentationFile>$(OutputPath)\$(AssemblyName).XML</DocumentationFile>
   </PropertyGroup>

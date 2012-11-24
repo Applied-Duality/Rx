@@ -1,10 +1,10 @@
-﻿namespace System.Reactive
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Linq.Expressions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 
+namespace System.Reactive
+{
     public partial class PullMergeSort<T> : IEnumerable<T>
     {
         Func<T, DateTime> _keyFunction;
@@ -29,28 +29,40 @@
         class Enumerator : IEnumerator<T>
         {
             PullMergeSort<T> _parent;
-            List<IEnumerator<T>> _inputs;
+            List<Reader<T>> _inputs;
             T _current;
-            bool _firstMove;
+            bool _initialized = false;
 
             public Enumerator(PullMergeSort<T> parent, IEnumerable<IEnumerator<T>> inputs)
             {
                 _parent = parent;
-                _inputs = new List<IEnumerator<T>>(inputs);
-                _firstMove = true;
+                _inputs = new  List<Reader<T>>();
+                foreach(var i in inputs)
+                {
+                    _inputs.Add(new Reader<T>(i));
+                }
             }
 
             public bool MoveNext()
             {
-                if (_firstMove)
+                if (!_initialized)
                 {
-                    _firstMove = false; 
-                    return FirstMove();
+                    foreach (var reader in _inputs)
+                    {
+                        reader.ReadOne();
+                    };
+
+                    _initialized = true;
                 }
-                else
-                {
-                    return SubsequentMove();
-                }
+                
+                Reader<T> streamToRead = FindStreamToRead();
+
+                if (streamToRead == null)
+                    return false;
+
+                _current = streamToRead.Next;
+                streamToRead.ReadOne();
+                return true;
             }
 
             public T Current
@@ -76,56 +88,21 @@
                 throw new NotImplementedException();
             }
 
-            bool FirstMove()
+            Reader<T> FindStreamToRead()
             {
-                Queue<IEnumerator<T>> inputsToRemove = new Queue<IEnumerator<T>>();
-
-                foreach (IEnumerator<T> input in _inputs)
-                {
-                    if (!input.MoveNext())
-                    {
-                        inputsToRemove.Enqueue(input);
-                    }
-                }
-
-                foreach (IEnumerator<T> input in inputsToRemove)
-                {
-                    _inputs.Remove(input);
-                }
-
-                if (_inputs.Count == 0)
-                    return false;
-
-                IEnumerator<T> streamToRead = FindStreamToRead();
-                _current = streamToRead.Current;
-
-                return true;
-            }
-
-            bool SubsequentMove()
-            {
-                IEnumerator<T> streamToRead = FindStreamToRead(); 
-            
-                if (streamToRead.MoveNext())
-                {
-                    _current = streamToRead.Current;
-                    return true;
-                }
-                else
-                {
-                    _inputs.Remove(streamToRead);
-                    return _inputs.Count > 0;
-                }
-            }
-
-            IEnumerator<T> FindStreamToRead()
-            {
-                IEnumerator<T> streamToRead = null;
+                Reader<T> streamToRead = null;
                 DateTime earliestTimestamp = DateTime.MaxValue;
+                List<Reader<T>> toRemove = new List<Reader<T>>();
 
-                foreach (IEnumerator<T> s in _inputs)
+                foreach (Reader<T> s in _inputs)
                 {
-                    DateTime timestamp = _parent._keyFunction(s.Current);
+                    if (s.IsCompleted)
+                    {
+                        toRemove.Add(s);
+                        continue;
+                    }
+
+                    DateTime timestamp = _parent._keyFunction(s.Next);
                     if (timestamp < earliestTimestamp)
                     {
                         earliestTimestamp = timestamp;
@@ -133,7 +110,44 @@
                     }
                 }
 
+                foreach (var r in toRemove)
+                {
+                    _inputs.Remove(r);
+                    r.Dispose();
+                }
+
                 return streamToRead;
+            }
+        }
+
+        class Reader<T> : IDisposable
+        {
+            IEnumerator<T> _enumerator;
+            bool _isCompleted;
+
+            public Reader(IEnumerator<T> enumerator)
+            {
+                _enumerator = enumerator;
+            }
+
+            public bool IsCompleted
+            {
+                get { return _isCompleted; }
+            }
+
+            public T Next
+            {
+                get { return _enumerator.Current; }
+            }
+
+            public void  Dispose()
+            {
+ 	            _enumerator.Dispose();
+            }
+
+            public void  ReadOne()
+            {
+                _isCompleted = !_enumerator.MoveNext();
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using Microsoft.Etw;
+using Tx.Windows;
 
 namespace TxSamples.EtwRaw_RealTime
 {

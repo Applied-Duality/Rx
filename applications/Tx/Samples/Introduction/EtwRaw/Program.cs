@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reactive.Linq;
-using Microsoft.Etw;
+using Tx.Windows;
 
 namespace TxSamples.EtwRaw
 {
@@ -8,7 +8,7 @@ namespace TxSamples.EtwRaw
     {
         static void Main()
         {
-            IObservable<EtwNativeEvent> etl = EtwObservable.FromFiles(@"..\..\..\HTTP_Server.etl");
+            IObservable<EtwNativeEvent> etl = EtwObservable.FromFiles(@"HTTP_Server.etl");
             etl.Count().Subscribe(Console.WriteLine);
 
             Console.ReadLine();

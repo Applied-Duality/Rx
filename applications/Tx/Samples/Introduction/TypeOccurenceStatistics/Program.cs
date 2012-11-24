@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Reactive.Tx;
-using Microsoft.Etw;
+using System.Reactive;
+using Tx.Windows;
 using System.Reflection;
 
 namespace TxSamples.TypeStatistics

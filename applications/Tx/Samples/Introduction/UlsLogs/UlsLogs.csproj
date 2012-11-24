@@ -43,7 +43,6 @@
     <Reference Include="System.Reactive.Core, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Reactive.Interfaces, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Reactive.Linq, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Reactive.Tx, Culture=neutral, PublicKeyToken=3d3a4b0768c9178e, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -59,7 +58,16 @@
     <Compile Include="UlsStaticTypes.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="WAC.log" />
+    <ProjectReference Include="..\..\..\Source\Tx.Core\Tx.Core.csproj">
+      <Project>{c5cc33b0-1684-4dd4-83a5-5da4a9a25a7f}</Project>
+      <Name>Tx.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Traces\ULS.log">
+      <Link>ULS.log</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

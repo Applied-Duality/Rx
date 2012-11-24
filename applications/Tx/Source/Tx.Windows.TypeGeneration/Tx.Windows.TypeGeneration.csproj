@@ -16,7 +16,7 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
   </PropertyGroup>
-  <Import Project="..\Common.targets" />
+  <Import Project="..\..\Common.targets" />
   <PropertyGroup>
     <DocumentationFile>$(OutputPath)\$(AssemblyName).XML</DocumentationFile>
   </PropertyGroup>

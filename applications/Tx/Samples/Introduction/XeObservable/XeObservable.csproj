@@ -10,65 +10,39 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XeObservable</RootNamespace>
     <AssemblyName>XeObservable</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+  <Import Project="..\..\..\Common.targets" />
   <ItemGroup>
-    <Reference Include="Microsoft.SqlServer.XE.Core">
-      <HintPath>..\..\..\References\XEvent\Microsoft.SqlServer.XE.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SqlServer.XEvent">
-      <HintPath>..\..\..\References\XEvent\Microsoft.SqlServer.XEvent.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SqlServer.XEvent.Configuration">
-      <HintPath>..\..\..\References\XEvent\Microsoft.SqlServer.XEvent.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SqlServer.XEvent.Linq">
-      <HintPath>..\..\..\References\XEvent\Microsoft.SqlServer.XEvent.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SqlServer.XEvent.Targets">
-      <HintPath>..\..\..\References\XEvent\Microsoft.SqlServer.XEvent.Targets.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.XEvent" />
+    <Reference Include="Microsoft.SqlServer.XE.Core" />
+    <Reference Include="Microsoft.SqlServer.XEvent" />
+    <Reference Include="Microsoft.SqlServer.XEvent.Configuration" />
+    <Reference Include="Microsoft.SqlServer.XEvent.Linq" />
+    <Reference Include="Microsoft.SqlServer.XEvent.Targets" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Reactive.Core, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Reactive.Interfaces, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Reactive.Linq, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Reactive.Tx, Culture=neutral, PublicKeyToken=3d3a4b0768c9178e, processorArchitecture=MSIL" />
+    <Reference Include="System.Reactive.Core" />
+    <Reference Include="System.Reactive.Interfaces" />
+    <Reference Include="System.Reactive.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="gatewaysample.xel" />
+    <ProjectReference Include="..\..\..\Source\Tx.Core\Tx.Core.csproj">
+      <Project>{c5cc33b0-1684-4dd4-83a5-5da4a9a25a7f}</Project>
+      <Name>Tx.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Source\Tx.SqlServer\Tx.SqlServer.csproj">
+      <Project>{8892848f-45a1-46ac-a686-6a25eec1475b}</Project>
+      <Name>Tx.SqlServer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Traces\gatewaysample.xel">
+      <Link>gatewaysample.xel</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
+using System.Reactive;
 using System.Reactive.Linq;
-using System.Reactive.Tx;
-using Microsoft.Etw;
-using Microsoft.Etw.Microsoft_Windows_HttpService;
 using System.Collections.Generic;
+using Tx.Windows;
+using Tx.Windows.Microsoft_Windows_HttpService;
 
 namespace TxSamples.Playback_HTTP
 {
@@ -13,7 +13,7 @@ namespace TxSamples.Playback_HTTP
         static void Main()
         {
             Playback playback = new Playback();
-            playback.AddEtlFiles(@"..\..\..\HTTP_Server.etl");
+            playback.AddEtlFiles(@"HTTP_Server.etl");
 
             IObservable<Deliver> startEvents = playback.GetObservable<Deliver>();
             IObservable<FastResp> endEvents = playback.GetObservable<FastResp>();
@@ -52,6 +52,8 @@ namespace TxSamples.Playback_HTTP
             });
 
             playback.Run();
+
+            Console.ReadLine();
         }
     }
 }

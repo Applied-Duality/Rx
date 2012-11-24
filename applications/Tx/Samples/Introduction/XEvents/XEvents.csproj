@@ -75,8 +75,15 @@
     <Compile Include="XeStaticClasses.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="gatewaysample.xel" />
-    <None Include="PlaybackDemo.xel" />
+    <ProjectReference Include="..\..\..\Source\Tx.Core\Tx.Core.csproj">
+      <Project>{c5cc33b0-1684-4dd4-83a5-5da4a9a25a7f}</Project>
+      <Name>Tx.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Traces\gatewaysample.xel">
+      <Link>gatewaysample.xel</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

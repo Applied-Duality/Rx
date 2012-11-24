@@ -1,8 +1,7 @@
 ﻿using System;
+using System.Reactive;
 using System.Reactive.Linq;
-using Microsoft.Etw;
-using System.Reactive.Tx;
-using System.Reactive.Concurrency;
+using Tx.Windows;
 
 
 namespace TxSamples.EtwRaw_VirtualTime
@@ -11,7 +10,7 @@ namespace TxSamples.EtwRaw_VirtualTime
     {
         static void Main()
         {
-            IObservable<EtwNativeEvent> etl = EtwObservable.FromFiles(@"..\..\..\HTTP_Server.etl");
+            IObservable<EtwNativeEvent> etl = EtwObservable.FromFiles(@"HTTP_Server.etl");
 
             var timeSource = new TimeSource<EtwNativeEvent>(etl, e => e.TimeStamp);
 

@@ -94,8 +94,8 @@
 
 using System;");
             sb.AppendLine();
-            sb.AppendLine(); 
-            sb.Append("namespace Microsoft.Etw.");
+            sb.AppendLine();
+            sb.Append("namespace Tx.Windows.");
             sb.Append(providerName);
             sb.AppendLine(); 
             sb.AppendLine("{");
@@ -158,7 +158,7 @@ using System;");
 using System;");
             sb.AppendLine();
             sb.AppendLine();
-            sb.Append("namespace Microsoft.Etw.");
+            sb.Append("namespace Tx.Windows.");
             sb.Append(providerName);
             sb.AppendLine();
             sb.AppendLine("{");

@@ -1,4 +1,4 @@
-# Tx (LINQ to Traces)
+# Tx (LINQ to Traces)?
 
 Tx is set of code samples showing how to use LINQ to events, such as:
 

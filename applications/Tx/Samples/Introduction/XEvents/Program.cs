@@ -17,7 +17,7 @@ namespace XEvents
 
         static void Option1_TimeSource()
         {
-            IObservable<PublishedEvent> obs = XeObservable.FromFiles(@"..\..\gatewaysample*.xel");
+            IObservable<PublishedEvent> obs = XeObservable.FromFiles(@"gatewaysample.xel");
             TimeSource<PublishedEvent> timeSource = new TimeSource<PublishedEvent>(obs, e => e.Timestamp);
 
             timeSource
@@ -40,7 +40,7 @@ namespace XEvents
         static void Option2_Playback()
         {
             Playback playback = new Playback();
-            playback.AddXelFiles(@"..\..\*.xel");
+            playback.AddXelFiles(@"gatewaysample.xel");
 
             IObservable<login_timing> logins = playback.GetObservable<login_timing>();
 

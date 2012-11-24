@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
-using Microsoft.Evtx;
+using Tx.Windows;
 
 namespace TxSamples.EvtxRaw
 {

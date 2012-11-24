@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reactive;
-using System.Reactive.Tx;
 
 namespace UlsLogs
 {
@@ -12,12 +11,14 @@ namespace UlsLogs
         static void Main(string[] args)
         {
             Playback playback = new Playback();
-            playback.AddUlsFiles(@"..\..\WAC.log");
+            playback.AddUlsFiles(@"ULS.log");
 
             var s = playback.GetObservable<LeavingMonitoredScope>();
-            s.Subscribe(e => Console.Write(e.Scope));
+            s.Subscribe(e => Console.WriteLine(e.Scope));
 
             playback.Run();
+
+            Console.ReadLine();
         }
     }
 }

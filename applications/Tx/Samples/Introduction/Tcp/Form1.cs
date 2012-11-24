@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using Microsoft.Etw;
-using System.Reactive.Tx;
-using System.Reactive.Linq;
 using System.Diagnostics;
-using System.Windows.Forms.DataVisualization.Charting;
-using Microsoft.Etw.Microsoft_Windows_Kernel_Network;
 using System.Net;
+using System.Reactive;
+using System.Reactive.Linq;
+using System.Security.Principal;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+using Tx.Windows;
+using Tx.Windows.Microsoft_Windows_Kernel_Network;
 
 namespace Tcp
 {
@@ -81,6 +77,10 @@ namespace Tcp
 
         static void StartSession(string sessionName, Guid providerId)
         {
+            var principal = new WindowsPrincipal(WindowsIdentity.GetCurrent());
+            if (!principal.IsInRole(WindowsBuiltInRole.Administrator))
+                throw new Exception("To use ETW real-time session you must be administrator");
+
             Process logman = Process.Start("logman.exe", "stop " + sessionName + " -ets");
             logman.WaitForExit();
 
