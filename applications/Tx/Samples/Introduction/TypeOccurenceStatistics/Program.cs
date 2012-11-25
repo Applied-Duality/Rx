@@ -18,7 +18,7 @@ namespace TxSamples.TypeStatistics
         static void Main()
         {
             var stat = new TypeOccurenceStatistics(Assembly.GetExecutingAssembly().GetTypes());
-            stat.AddEtlFiles(@"..\..\..\HTTP_Server.etl");
+            stat.AddEtlFiles(@"HTTP_Server.etl");
             stat.Run();
 
             foreach (KeyValuePair<Type, long> pair in stat.Statistics)

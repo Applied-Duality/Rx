@@ -10,7 +10,7 @@ namespace TxSamples.EvtxRaw
     {
         static void Main()
         {
-            IEnumerable<EventRecord> evtx = EvtxEnumerable.FromFiles(@"..\..\..\HTTP_Server.evtx");
+            IEnumerable<EventRecord> evtx = EvtxEnumerable.FromFiles(@"HTTP_Server.evtx");
             Console.WriteLine(evtx.Count());
 
             Console.ReadLine();
