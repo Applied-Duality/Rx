@@ -26,7 +26,7 @@ namespace Tests.Tx
         {
             var pb = new Playback();
             pb.AddEtlFiles(EtlFileName);
-            var start = from p in pb.GetObservable<ProcessStart>() // this is V0 event
+            var start = from p in pb.GetObservable<ProcessStart_V0>() 
                          select new
                          {
                              p.ProcessID,
@@ -64,7 +64,7 @@ namespace Tests.Tx
         {
             var pb = new Playback();
             pb.AddEtlFiles(EtlFileName);
-            var start = pb.GetObservable<ProcessStart>(); // this is V0 event
+            var start = pb.GetObservable<ProcessStart_V0>(); // this is V0 event
             var end = pb.GetObservable<ProcessStop_V1>(); // this is V1 event
 
             var processes = from s in start

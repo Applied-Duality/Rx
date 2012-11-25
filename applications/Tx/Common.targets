@@ -105,8 +105,4 @@
   </PropertyGroup>
   -->
 
-  <PropertyGroup>
-    <CPReferencePath>..\..\References\$(BuildFlavor)</CPReferencePath>
-  </PropertyGroup>
-
 </Project>

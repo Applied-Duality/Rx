@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.XEvent;
+using Tx.SqlServer;
 
 namespace Microsoft.SqlServer.XEvent.Static
 {

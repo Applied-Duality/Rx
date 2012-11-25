@@ -6,9 +6,8 @@ using System;
 
 namespace Tx.Windows.Microsoft_Windows_Kernel_File
 {
-    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 30, 0)]
-    [Format("New File Creation was requested (%1) for file object %3 with name %7.")]
-    public class CreateNewFile : SystemEvent
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 12, 0)]
+    public class KFileEvt_Create_V0 : SystemEvent
     {
         [EventField("win:Pointer")]
         public ulong Irp { get; set; }
@@ -32,9 +31,90 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_File
         public string FileName { get; set; }
     }
 
-    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 29, 0)]
-    [Format("File SetLink was requested (%1) for file object %3 with key %4.")]
-    public class Rename : SystemEvent
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 13, 0)]
+    public class KFileEvt_Cleanup_V0 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ThreadId { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 14, 0)]
+    public class KFileEvt_Close_V0 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ThreadId { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 15, 0)]
+    public class KFileEvt_Read_V0 : SystemEvent
+    {
+        [EventField("win:UInt64")]
+        public ulong ByteOffset { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ThreadId { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IOSize { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IOFlags { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 16, 0)]
+    public class KFileEvt_Write_V0 : SystemEvent
+    {
+        [EventField("win:UInt64")]
+        public ulong ByteOffset { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ThreadId { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IOSize { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IOFlags { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 17, 0)]
+    public class KFileEvt_SetInformation_V0 : SystemEvent
     {
         [EventField("win:Pointer")]
         public ulong Irp { get; set; }
@@ -55,9 +135,168 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_File
         public uint InfoClass { get; set; }
     }
 
-    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 28, 0)]
-    [Format("File Link was requested (%1) for file object %3 to path %7.")]
-    public class SetLinkPath : SystemEvent
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 18, 0)]
+    public class KFileEvt_Delete_V0 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ThreadId { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ExtraInformation { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint InfoClass { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 19, 0)]
+    public class KFileEvt_Rename_V0 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ThreadId { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ExtraInformation { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint InfoClass { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 20, 0)]
+    public class KFileEvt_DirEnum_V0 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ThreadId { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint Length { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint InfoClass { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint FileIndex { get; set; }
+
+        [EventField("win:UnicodeString")]
+        public string FileName { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 21, 0)]
+    public class KFileEvt_Flush_V0 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ThreadId { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 22, 0)]
+    public class KFileEvt_QueryInformation_V0 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ThreadId { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ExtraInformation { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint InfoClass { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 23, 0)]
+    public class KFileEvt_FSCTL_V0 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ThreadId { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ExtraInformation { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint InfoClass { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 25, 0)]
+    public class KFileEvt_DirNotify_V0 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ThreadId { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint Length { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint InfoClass { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint FileIndex { get; set; }
+
+        [EventField("win:UnicodeString")]
+        public string FileName { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 26, 0)]
+    public class KFileEvt_DeletePath_V0 : SystemEvent
     {
         [EventField("win:Pointer")]
         public ulong Irp { get; set; }
@@ -82,8 +321,7 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_File
     }
 
     [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 27, 0)]
-    [Format("File Rename was requested (%1) for file object %3 with new path %7.")]
-    public class RenamePath : SystemEvent
+    public class KFileEvt_RenamePath_V0 : SystemEvent
     {
         [EventField("win:Pointer")]
         public ulong Irp { get; set; }
@@ -107,9 +345,8 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_File
         public string FilePath { get; set; }
     }
 
-    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 26, 0)]
-    [Format("File Delete was requested (%1) for file object %3 with path %7.")]
-    public class DeletePath : SystemEvent
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 28, 0)]
+    public class KFileEvt_SetLinkPath_V0 : SystemEvent
     {
         [EventField("win:Pointer")]
         public ulong Irp { get; set; }
@@ -133,52 +370,8 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_File
         public string FilePath { get; set; }
     }
 
-    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 25, 0)]
-    [Format("File Directory Change Notification was requested (%1) for file object %3 with key %4.")]
-    public class DirNotify : SystemEvent
-    {
-        [EventField("win:Pointer")]
-        public ulong Irp { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong ThreadId { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong FileObject { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong FileKey { get; set; }
-
-        [EventField("win:UInt32")]
-        public uint Length { get; set; }
-
-        [EventField("win:UInt32")]
-        public uint InfoClass { get; set; }
-
-        [EventField("win:UInt32")]
-        public uint FileIndex { get; set; }
-
-        [EventField("win:UnicodeString")]
-        public string FileName { get; set; }
-    }
-
-    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 24, 0)]
-    [Format("File operation request %1 completed with status %3 and extra information %2.")]
-    public class OperationEnd : SystemEvent
-    {
-        [EventField("win:Pointer")]
-        public ulong Irp { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong ExtraInformation { get; set; }
-
-        [EventField("win:UInt32")]
-        public uint Status { get; set; }
-    }
-
-    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 23, 0)]
-    [Format("File FSCTL was requested (%1) for file object %3 with key %4 for type %6 with %5 as extra information.")]
-    public class FSCTL : SystemEvent
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 29, 0)]
+    public class KFileEvt_SetLink_V0 : SystemEvent
     {
         [EventField("win:Pointer")]
         public ulong Irp { get; set; }
@@ -199,210 +392,8 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_File
         public uint InfoClass { get; set; }
     }
 
-    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 22, 0)]
-    [Format("File Query Information was requested (%1) for file object %3 with key %4 for type %6.")]
-    public class QueryInformation : SystemEvent
-    {
-        [EventField("win:Pointer")]
-        public ulong Irp { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong ThreadId { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong FileObject { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong FileKey { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong ExtraInformation { get; set; }
-
-        [EventField("win:UInt32")]
-        public uint InfoClass { get; set; }
-    }
-
-    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 21, 0)]
-    [Format("File Flush was requested (%1) for file object %3 with key %4.")]
-    public class Flush : SystemEvent
-    {
-        [EventField("win:Pointer")]
-        public ulong Irp { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong ThreadId { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong FileObject { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong FileKey { get; set; }
-    }
-
-    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 20, 0)]
-    [Format("File Directory Enumeration was requested (%1) for file object %3 with key %4 for pattern %8.")]
-    public class DirEnum : SystemEvent
-    {
-        [EventField("win:Pointer")]
-        public ulong Irp { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong ThreadId { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong FileObject { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong FileKey { get; set; }
-
-        [EventField("win:UInt32")]
-        public uint Length { get; set; }
-
-        [EventField("win:UInt32")]
-        public uint InfoClass { get; set; }
-
-        [EventField("win:UInt32")]
-        public uint FileIndex { get; set; }
-
-        [EventField("win:UnicodeString")]
-        public string FileName { get; set; }
-    }
-
-    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 18, 0)]
-    [Format("File Delete status update was requested (%1) for file object %3 with key %4: delete status %5.")]
-    public class SetDelete : SystemEvent
-    {
-        [EventField("win:Pointer")]
-        public ulong Irp { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong ThreadId { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong FileObject { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong FileKey { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong ExtraInformation { get; set; }
-
-        [EventField("win:UInt32")]
-        public uint InfoClass { get; set; }
-    }
-
-    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 17, 0)]
-    [Format("File Set Information was requested (%1) for file object %3 with key %4 for type %6 with %5 as extra information.")]
-    public class SetInformation : SystemEvent
-    {
-        [EventField("win:Pointer")]
-        public ulong Irp { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong ThreadId { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong FileObject { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong FileKey { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong ExtraInformation { get; set; }
-
-        [EventField("win:UInt32")]
-        public uint InfoClass { get; set; }
-    }
-
-    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 16, 0)]
-    [Format("File Write was requested (%2) for file object %4 with key %5 at offset %1 for %6 bytes.")]
-    public class Write : SystemEvent
-    {
-        [EventField("win:UInt64")]
-        public ulong ByteOffset { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong Irp { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong ThreadId { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong FileObject { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong FileKey { get; set; }
-
-        [EventField("win:UInt32")]
-        public uint IOSize { get; set; }
-
-        [EventField("win:UInt32")]
-        public uint IOFlags { get; set; }
-    }
-
-    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 15, 0)]
-    [Format("File Read was requested (%2) for file object %4 with key %5 at offset %1 for %6 bytes.")]
-    public class Read : SystemEvent
-    {
-        [EventField("win:UInt64")]
-        public ulong ByteOffset { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong Irp { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong ThreadId { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong FileObject { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong FileKey { get; set; }
-
-        [EventField("win:UInt32")]
-        public uint IOSize { get; set; }
-
-        [EventField("win:UInt32")]
-        public uint IOFlags { get; set; }
-    }
-
-    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 14, 0)]
-    [Format("File Close was requested (%1) for file object %3 with key %4.")]
-    public class Close : SystemEvent
-    {
-        [EventField("win:Pointer")]
-        public ulong Irp { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong ThreadId { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong FileObject { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong FileKey { get; set; }
-    }
-
-    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 13, 0)]
-    [Format("File Cleanup was requested (%1) for file object %3 with key %4.")]
-    public class Cleanup : SystemEvent
-    {
-        [EventField("win:Pointer")]
-        public ulong Irp { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong ThreadId { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong FileObject { get; set; }
-
-        [EventField("win:Pointer")]
-        public ulong FileKey { get; set; }
-    }
-
-    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 12, 0)]
-    [Format("File Create was requested (%1) for file object %3 with name %7.")]
-    public class Create : SystemEvent
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 30, 0)]
+    public class KFileEvt_CreateNewFile_V0 : SystemEvent
     {
         [EventField("win:Pointer")]
         public ulong Irp { get; set; }
@@ -426,9 +417,8 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_File
         public string FileName { get; set; }
     }
 
-    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 11, 0)]
-    [Format("File name %2 was disassociated with key %1.")]
-    public class NameDelete : SystemEvent
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 10, 0)]
+    public class KFileEvt_NameCreate : SystemEvent
     {
         [EventField("win:Pointer")]
         public ulong FileKey { get; set; }
@@ -437,12 +427,441 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_File
         public string FileName { get; set; }
     }
 
-    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 10, 0)]
-    [Format("File name %2 was associated with key %1.")]
-    public class NameCreate : SystemEvent
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 11, 0)]
+    public class KFileEvt_NameDelete : SystemEvent
     {
         [EventField("win:Pointer")]
         public ulong FileKey { get; set; }
+
+        [EventField("win:UnicodeString")]
+        public string FileName { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 12, 1)]
+    public class KFileEvt_Create_V1 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IssuingThreadId { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint CreateOptions { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint CreateAttributes { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint ShareAccess { get; set; }
+
+        [EventField("win:UnicodeString")]
+        public string FileName { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 13, 1)]
+    public class KFileEvt_Cleanup_V1 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IssuingThreadId { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 14, 1)]
+    public class KFileEvt_Close_V1 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IssuingThreadId { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 15, 1)]
+    public class KFileEvt_Read_V1 : SystemEvent
+    {
+        [EventField("win:UInt64")]
+        public ulong ByteOffset { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IssuingThreadId { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IOSize { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IOFlags { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint ExtraFlags { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 16, 1)]
+    public class KFileEvt_Write_V1 : SystemEvent
+    {
+        [EventField("win:UInt64")]
+        public ulong ByteOffset { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IssuingThreadId { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IOSize { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IOFlags { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint ExtraFlags { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 17, 1)]
+    public class KFileEvt_SetInformation_V1 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ExtraInformation { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IssuingThreadId { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint InfoClass { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 18, 1)]
+    public class KFileEvt_Delete_V1 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ExtraInformation { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IssuingThreadId { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint InfoClass { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 19, 1)]
+    public class KFileEvt_Rename_V1 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ExtraInformation { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IssuingThreadId { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint InfoClass { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 20, 1)]
+    public class KFileEvt_DirEnum_V1 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IssuingThreadId { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint Length { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint InfoClass { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint FileIndex { get; set; }
+
+        [EventField("win:UnicodeString")]
+        public string FileName { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 21, 1)]
+    public class KFileEvt_Flush_V1 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IssuingThreadId { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 22, 1)]
+    public class KFileEvt_QueryInformation_V1 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ExtraInformation { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IssuingThreadId { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint InfoClass { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 23, 1)]
+    public class KFileEvt_FSCTL_V1 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ExtraInformation { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IssuingThreadId { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint InfoClass { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 24, 0)]
+    public class KFileEvt_OperationEnd : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ExtraInformation { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint Status { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 25, 1)]
+    public class KFileEvt_DirNotify_V1 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IssuingThreadId { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint Length { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint InfoClass { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint FileIndex { get; set; }
+
+        [EventField("win:UnicodeString")]
+        public string FileName { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 26, 1)]
+    public class KFileEvt_DeletePath_V1 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ExtraInformation { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IssuingThreadId { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint InfoClass { get; set; }
+
+        [EventField("win:UnicodeString")]
+        public string FilePath { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 27, 1)]
+    public class KFileEvt_RenamePath_V1 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ExtraInformation { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IssuingThreadId { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint InfoClass { get; set; }
+
+        [EventField("win:UnicodeString")]
+        public string FilePath { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 28, 1)]
+    public class KFileEvt_SetLinkPath_V1 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ExtraInformation { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IssuingThreadId { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint InfoClass { get; set; }
+
+        [EventField("win:UnicodeString")]
+        public string FilePath { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 29, 1)]
+    public class KFileEvt_SetLink_V1 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileKey { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong ExtraInformation { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IssuingThreadId { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint InfoClass { get; set; }
+    }
+
+    [ManifestEvent("{edd08927-9cc4-4e65-b970-c2560fb5c289}", 30, 1)]
+    public class KFileEvt_CreateNewFile_V1 : SystemEvent
+    {
+        [EventField("win:Pointer")]
+        public ulong Irp { get; set; }
+
+        [EventField("win:Pointer")]
+        public ulong FileObject { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint IssuingThreadId { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint CreateOptions { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint CreateAttributes { get; set; }
+
+        [EventField("win:UInt32")]
+        public uint ShareAccess { get; set; }
 
         [EventField("win:UnicodeString")]
         public string FileName { get; set; }

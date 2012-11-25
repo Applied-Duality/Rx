@@ -10,33 +10,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XEvents</RootNamespace>
     <AssemblyName>XEvents</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+  <Import Project="..\..\..\Common.targets" />
+  <PropertyGroup>
+    <CPReferencePath>..\..\..\References\$(BuildFlavor)</CPReferencePath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility">
@@ -55,14 +32,20 @@
     <Reference Include="Microsoft.SqlServer.XEvent.Targets">
       <HintPath>..\..\..\References\XEvent\Microsoft.SqlServer.XEvent.Targets.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.XEvent, Culture=neutral, PublicKeyToken=3d3a4b0768c9178e, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Reactive.Core, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Reactive.Interfaces, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Reactive.Linq, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Reactive.PlatformServices, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Reactive.Tx, Culture=neutral, PublicKeyToken=3d3a4b0768c9178e, processorArchitecture=MSIL" />
+    <Reference Include="System.Reactive.Core">
+      <HintPath>$(CPReferencePath)\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>$(CPReferencePath)\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>$(CPReferencePath)\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>$(CPReferencePath)\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,15 +58,19 @@
     <Compile Include="XeStaticClasses.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\Traces\gatewaysample.xel">
+      <Link>gatewaysample.xel</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\..\Source\Tx.Core\Tx.Core.csproj">
       <Project>{c5cc33b0-1684-4dd4-83a5-5da4a9a25a7f}</Project>
       <Name>Tx.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\Traces\gatewaysample.xel">
-      <Link>gatewaysample.xel</Link>
-    </None>
+    <ProjectReference Include="..\..\..\Source\Tx.SqlServer\Tx.SqlServer.csproj">
+      <Project>{8892848f-45a1-46ac-a686-6a25eec1475b}</Project>
+      <Name>Tx.SqlServer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

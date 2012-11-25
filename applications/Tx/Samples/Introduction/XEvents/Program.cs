@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Reactive;
 using System.Reactive.Linq;
-using System.Reactive.Tx;
 using Microsoft.SqlServer.XEvent.Static;
 using Microsoft.SqlServer.XEvent.Linq;
-using Microsoft.XEvent;
+using Tx.SqlServer;
 
 namespace XEvents
 {

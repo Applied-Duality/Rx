@@ -12,6 +12,9 @@
     <AssemblyName>XeObservable</AssemblyName>
   </PropertyGroup>
   <Import Project="..\..\..\Common.targets" />
+  <PropertyGroup>
+    <CPReferencePath>..\..\..\References\$(BuildFlavor)</CPReferencePath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SqlServer.XE.Core" />
     <Reference Include="Microsoft.SqlServer.XEvent" />

@@ -16,6 +16,9 @@
   </PropertyGroup>
   <Import Project="..\Common.targets" />
   <PropertyGroup>
+    <CPReferencePath>..\References\$(BuildFlavor)</CPReferencePath>
+  </PropertyGroup>
+  <PropertyGroup>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
@@ -28,10 +31,18 @@
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Reactive.Core" />
-    <Reference Include="System.Reactive.Interfaces" />
-    <Reference Include="System.Reactive.Linq" />
-    <Reference Include="System.Reactive.PlatformServices" />
+    <Reference Include="System.Reactive.Core">
+      <HintPath>$(CPReferencePath)\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>$(CPReferencePath)\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>$(CPReferencePath)\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>$(CPReferencePath)\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">

@@ -12,6 +12,9 @@
     <AssemblyName>XEventGenerator</AssemblyName>
   </PropertyGroup>
   <Import Project="..\..\..\Common.targets" />
+  <PropertyGroup>
+    <CPReferencePath>..\..\..\References\$(BuildFlavor)</CPReferencePath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -21,13 +24,19 @@
     <Reference Include="Microsoft.SqlServer.XEvent.Configuration" />
     <Reference Include="Microsoft.SqlServer.XEvent.Linq" />
     <Reference Include="Microsoft.SqlServer.XEvent.Targets" />
-    <Reference Include="Microsoft.XEvent" />
     <Reference Include="System" />
-    <Reference Include="System.Reactive.Core" />
-    <Reference Include="System.Reactive.Interfaces" />
-    <Reference Include="System.Reactive.Linq" />
-    <Reference Include="System.Reactive.PlatformServices" />
-    <Reference Include="System.Reactive.Tx" />
+    <Reference Include="System.Reactive.Core">
+      <HintPath>$(CPReferencePath)\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>$(CPReferencePath)\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>$(CPReferencePath)\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>$(CPReferencePath)\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
@@ -38,6 +47,16 @@
     <Content Include="xeconfig.xml">
       <SubType>Designer</SubType>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Source\Tx.Core\Tx.Core.csproj">
+      <Project>{c5cc33b0-1684-4dd4-83a5-5da4a9a25a7f}</Project>
+      <Name>Tx.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Source\Tx.SqlServer\Tx.SqlServer.csproj">
+      <Project>{8892848f-45a1-46ac-a686-6a25eec1475b}</Project>
+      <Name>Tx.SqlServer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

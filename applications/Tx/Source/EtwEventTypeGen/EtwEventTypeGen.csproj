@@ -18,6 +18,9 @@
   </PropertyGroup>
   <Import Project="..\..\Common.targets" />
   <PropertyGroup>
+    <CPReferencePath>..\..\References\$(BuildFlavor)</CPReferencePath>
+  </PropertyGroup>
+  <PropertyGroup>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>

@@ -12,11 +12,20 @@
     <AssemblyName>Playback_RealTime</AssemblyName>
   </PropertyGroup>
   <Import Project="..\..\..\Common.targets" />
+  <PropertyGroup>
+    <CPReferencePath>..\..\..\References\$(BuildFlavor)</CPReferencePath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Reactive.Core" />
-    <Reference Include="System.Reactive.Interfaces" />
-    <Reference Include="System.Reactive.Linq" />
+    <Reference Include="System.Reactive.Core">
+      <HintPath>$(CPReferencePath)\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>$(CPReferencePath)\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>$(CPReferencePath)\System.Reactive.Linq.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Microsoft_Windows_Kernel_Network.cs" />

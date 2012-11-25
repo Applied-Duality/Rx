@@ -15,6 +15,9 @@
   </PropertyGroup>
   <Import Project="..\..\Common.targets" />
   <PropertyGroup>
+    <CPReferencePath>..\..\References\$(BuildFlavor)</CPReferencePath>
+  </PropertyGroup>
+  <PropertyGroup>
     <DocumentationFile>$(OutputPath)\$(AssemblyName).XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
