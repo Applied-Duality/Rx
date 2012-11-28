@@ -34,7 +34,7 @@
       <HintPath>$(CPReferencePath)\System.Reactive.PlatformServices.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Windows.Forms">
-      <HintPath>$(CPReferencePath)\System.Reactive.PlatformServices.dll</HintPath>
+      <HintPath>$(CPReferencePath)\System.Reactive.Windows.Forms.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
