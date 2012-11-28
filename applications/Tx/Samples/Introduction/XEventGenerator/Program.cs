@@ -69,7 +69,7 @@ namespace TxSamples.XEventGenerator
             playback.GetObservable<MyXEvent>().Subscribe(e => Console.WriteLine(e.x));
             playback.Start();
 
-            SessionConfiguration cfg = new SessionConfiguration(@"..\..\xeconfig.xml");
+            SessionConfiguration cfg = new SessionConfiguration(@"xeconfig.xml");
 
             for (int i = 0; i < 10; i++)
             {
