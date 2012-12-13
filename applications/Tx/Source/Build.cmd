@@ -23,6 +23,8 @@ call :pack Tx.Core
 call :pack Tx.Windows
 call :pack Tx.Windows.TypeGeneration
 call :pack Tx.SqlServer
+call :pack Tx.All
+
 exit /b 0
 
 :pack %1

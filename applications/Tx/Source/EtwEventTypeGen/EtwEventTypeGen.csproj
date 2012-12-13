@@ -34,20 +34,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Microsoft.Etw.TypeGeneration\Microsoft.Etw.TypeGeneration.csproj">
-      <Project>{A4517ABD-D558-42F3-8FE4-2A6BA3074014}</Project>
-      <Name>Microsoft.Etw.TypeGeneration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Microsoft.Etw\Microsoft.Etw.csproj">
-      <Project>{C4043ABB-EC40-4194-B15B-C0D13C2CF5C8}</Project>
-      <Name>Microsoft.Etw</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\key.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tx.Windows.TypeGeneration\Tx.Windows.TypeGeneration.csproj">
+      <Project>{a4517abd-d558-42f3-8fe4-2a6ba3074014}</Project>
+      <Name>Tx.Windows.TypeGeneration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tx.Windows\Tx.Windows.csproj">
+      <Project>{c4043abb-ec40-4194-b15b-c0d13c2cf5c8}</Project>
+      <Name>Tx.Windows</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

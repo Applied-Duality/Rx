@@ -66,6 +66,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\key.snk" />
+    <None Include="Tx.All.Layout.cmd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Tx.All.nuspec">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Tx.Core.Layout.cmd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
