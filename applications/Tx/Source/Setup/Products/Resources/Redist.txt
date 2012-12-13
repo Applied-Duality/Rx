@@ -1,5 +1,0 @@
-REDIST.TXT
-
-Subject to the license terms for the software, you may redistribute the files (unmodified) listed below.
-
-(To be supplied)
