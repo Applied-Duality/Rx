@@ -28,9 +28,9 @@ call :pack Tx.All
 exit /b 0
 
 :pack %1
-call Net40\%1.Layout.cmd
+call Net40\Properties\%1.Layout.cmd
 cd %1
-copy ..\Net40\%1.nuspec
+copy ..\Net40\Properties\%1.nuspec
 ..\..\NuGet pack %1.nuspec
 move *.nupkg ..\
 cd ..

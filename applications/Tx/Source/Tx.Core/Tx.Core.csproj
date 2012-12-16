@@ -43,6 +43,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Attributes.cs" />
     <Compile Include="CustomAttributeProviderExtensions.cs" />
     <Compile Include="BufferQueue.cs" />
@@ -51,7 +54,6 @@
     <Compile Include="PullMergeSort.cs" />
     <Compile Include="Pump.cs" />
     <Compile Include="ITypeStatistics.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CompositeDeserializer.cs" />
     <Compile Include="IDeserializer.cs" />
     <Compile Include="Demultiplexor.cs" />
@@ -64,18 +66,20 @@
     <Compile Include="TypeOccurenceStatistics.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\key.snk" />
-    <None Include="Tx.All.Layout.cmd">
+    <None Include="..\key.snk">
+      <Link>Properties\key.snk</Link>
+    </None>
+    <None Include="Properties\Tx.All.Layout.cmd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Tx.All.nuspec">
+    <None Include="Properties\Tx.All.nuspec">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Tx.Core.Layout.cmd">
+    <None Include="Properties\Tx.Core.Layout.cmd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Tx.Core.nuspec">
+    <None Include="Properties\Tx.Core.nuspec">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
