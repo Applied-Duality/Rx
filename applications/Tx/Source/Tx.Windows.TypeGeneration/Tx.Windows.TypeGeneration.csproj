@@ -47,7 +47,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Tx.Windows\Tx.Windows.csproj">
       <Project>{C4043ABB-EC40-4194-B15B-C0D13C2CF5C8}</Project>
-      <Name>Microsoft.Etw</Name>
+      <Name>Tx.Windows</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
