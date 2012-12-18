@@ -79,10 +79,18 @@ namespace System.Reactive
             {
                 ((IDisposable)input).Dispose();
             }
-            _pump.Dispose();
-            _pumpStart.Dispose();
-            _subject.Dispose();
-            _toDemux.Dispose();
+
+            if (null != _pump)
+                _pump.Dispose();
+
+            if (null!= _pumpStart)
+                _pumpStart.Dispose();
+
+            if (null!= _subject)
+                _subject.Dispose();
+
+            if (null!=_toDemux)
+                _toDemux.Dispose();
         }
 
         /// <summary>
