@@ -3,7 +3,7 @@
   <metadata>
     <id>Tx.All</id>
     <title>Tx (LINQ to Traces)</title>
-    <version>1.0.3-beta</version>
+    <version>1.0.4-beta</version>
     <description>Reusable components for representing raw traces/logs and real-time feeds as IObservable sequences</description>
     <authors>Microsoft</authors>
 <!--
@@ -15,10 +15,10 @@
       <tags>Tx Traces Logs Playback Replay XEvent ETW</tags>
       <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>
-      <dependency id="Tx.Core" version="1.0.3-beta" />
-      <dependency id="Tx.Windows" version="1.0.3-beta" />
-      <dependency id="Tx.Windows.TypeGeneration" version="1.0.3-beta" />       
-      <dependency id="Tx.SqlServer" version="1.0.3-beta" />
+      <dependency id="Tx.Core" version="1.0.4-beta" />
+      <dependency id="Tx.Windows" version="1.0.4-beta" />
+      <dependency id="Tx.Windows.TypeGeneration" version="1.0.4-beta" />       
+      <dependency id="Tx.SqlServer" version="1.0.4-beta" />
     </dependencies>
   </metadata>
 </package>

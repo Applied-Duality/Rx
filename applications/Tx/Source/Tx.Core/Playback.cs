@@ -9,10 +9,20 @@ using System.Reflection;
 using System.Reactive.Concurrency;
 using System.Reactive.Subjects;
 using System.Linq.Expressions;
+using System.Diagnostics;
 
 namespace System.Reactive
 {
-    public class Playback : ITimeSource, IPlaybackConfiguration
+    /// <summary>
+    /// Playback serves two purposes:
+    /// (1) Replay the history from one or more trace/log files, by turning the event occurence records into C# instances
+    /// (2) Deliver events from fixed set of real time sessions as C# instances
+    /// 
+    /// The invariants that Playback preserves are:
+    /// (a) The order within one input file/session (inputs events must be in order of occurence, and have increasing timestamps)
+    /// (b) The illusion of global order - merging different files/streams on timestamp
+    /// </summary>
+    public class Playback : ITimeSource, IPlaybackConfiguration, IDisposable
     {
         readonly List<InputStream> _inputs;
         PullMergeSort<Timestamped<object>> _mergesort;
@@ -22,15 +32,12 @@ namespace System.Reactive
         TimeSource<Timestamped<object>> _timeSource;
         Demultiplexor _demux;
         IDisposable _toDemux;
+        Stopwatch _stopwatch;
 
         List<IDisposable> _outputBuffers; 
 
         /// <summary>
-        /// Represents sequance of events comming from various sources, and of various static types
-        /// Pattern of usage:
-        ///     1. Add files or real-time sources
-        ///     2. build one or more queries
-        ///     3. Call Start (returns immediately) or Run (blocks until the processing is done)
+        /// Constructor
         /// </summary>
         public Playback()
         {
@@ -42,6 +49,7 @@ namespace System.Reactive
                 .Subscribe(_demux);
 
             _outputBuffers = new List<IDisposable>();
+            _stopwatch = new Stopwatch();
         }
 
         /// <summary>
@@ -54,7 +62,28 @@ namespace System.Reactive
             set { _timeSource.StartTime = value; }
         }
 
+        /// <summary>
+        /// The event types that are known
+        /// 
+        /// If you do playback.GetObservable&lt;A&gt:();  playback.GetObservable&lt;B&gt:();
+        /// the known types will be A and B
+        /// 
+        /// Only known event types can be formatted to text
+        /// Be sure to set the known types before calling Start() or Run()
+        /// </summary>
         public Type[] KnownTypes { get; set; }
+
+        public void Dispose()
+        {
+            foreach (InputStream input in _inputs)
+            {
+                ((IDisposable)input).Dispose();
+            }
+            _pump.Dispose();
+            _pumpStart.Dispose();
+            _subject.Dispose();
+            _toDemux.Dispose();
+        }
 
         /// <summary>
         /// Low level method for adding input sequence to the playback
@@ -72,11 +101,10 @@ namespace System.Reactive
         }
 
         /// <summary>
-        /// Gets a stream of output (static) type instances
-        /// These streams are the input of the queries
+        /// Call this to get just the events of given type
         /// </summary>
         /// <typeparam name="TOutput">The type of interest</typeparam>
-        /// <returns>Sequence of instances of TOutput that are recognized from any input sequence added to the playback</returns>
+        /// <returns>Sequence of events of type TOutput from all inputs added to the playback</returns>
         public IObservable<TOutput> GetObservable<TOutput>()
         {
             foreach (var i in _inputs)
@@ -88,6 +116,8 @@ namespace System.Reactive
 
         /// <summary>
         /// Starts the playback and returns immediately
+        /// 
+        /// The main use case is real-time feeds.
         /// </summary>
         public void Start()
         {
@@ -108,7 +138,7 @@ namespace System.Reactive
             _pumpStart = new ManualResetEvent(false);
             _pump = new OutputPump<Timestamped<object>>(_mergesort, _subject, _pumpStart);
             _pumpStart.Set();
-            
+            _stopwatch.Start();
             foreach (InputStream i in _inputs)
             {
                 i.Start();
@@ -116,21 +146,32 @@ namespace System.Reactive
         }
 
         /// <summary>
-        /// Starts the playback, and blocks until it is completed
-        /// This is useful to fill collections as output of the sequence processing 
+        /// Starts the playback, and blocks until rocessing of input is completed
         /// </summary>
         public void Run()
         {
             Start();
 
             _pump.Completed.WaitOne();
+            _stopwatch.Stop();
         }
 
+        /// <summary>
+        /// Scheduler that represents virtual time as per the timestamps on the events
+        /// 
+        /// Use playback.Scheduler as argument to temporal primitives like Window or Take
+        /// </summary>
         public IScheduler Scheduler
         {
             get { return _timeSource.Scheduler; }
         }
 
+        /// <summary>
+        /// BufferOutput lets you accumulate a small collection that is the result of stream processing
+        /// </summary>
+        /// <typeparam name="TOutput">The event type of interest</typeparam>
+        /// <param name="observavle">the results to accumulate</param>
+        /// <returns></returns>
         public IEnumerable<TOutput> BufferOutput<TOutput>(IObservable<TOutput> observavle)
         {
             var list = new List<TOutput>();
@@ -139,21 +180,35 @@ namespace System.Reactive
             return list;
         }
 
+        /// <summary>
+        /// The time elapsed 
+        /// - from calling Start() or Run(),
+        /// - to the current time (if processing is in progress) or the end of processing (e.g. Run() returns)
+        /// </summary>
+        public TimeSpan ExecutionDuration
+        {
+            get { return _stopwatch.Elapsed; }
+        }
+
+        ~Playback()
+        {
+            Dispose();
+        }
+
         interface InputStream
         {
             void AddKnownType(Type t);
             IEnumerator<Timestamped<object>> Output { get; }
-            WaitHandle Completed { get; }
             void Start();
         }
 
-        class InputStream<TInput> : InputStream
+        class InputStream<TInput> : InputStream, IDisposable
         {
             Playback _parent;
             IObservable<TInput> _source;
             IObserver<TInput> _deserializer;
             BufferQueue<Timestamped<object>> _output;
-            ManualResetEvent _completed;
+            IDisposable _subscription;
 
             public InputStream(
                 Playback parent, 
@@ -176,14 +231,18 @@ namespace System.Reactive
                 get { return _output; }
             }
 
-            public WaitHandle Completed
-            {
-                get { return _completed; }
-            }
-
             public void Start()
             {
-                _source.Subscribe(_deserializer);
+                _subscription = _source.Subscribe(_deserializer);
+            }
+
+            public void Dispose()
+            {
+                if (_subscription != null)
+                {
+                    _subscription.Dispose();
+                }
+                ((IDisposable)_output).Dispose();
             }
         }
     }

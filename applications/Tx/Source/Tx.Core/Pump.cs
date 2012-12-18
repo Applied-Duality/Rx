@@ -13,7 +13,7 @@
         public WaitHandle Completed { get { return _completed; } }
     }
 
-    class OutputPump<T> : Pump
+    class OutputPump<T> : Pump, IDisposable
     {
         IEnumerator<T> _source;
         IObserver<T> _target;
@@ -31,11 +31,35 @@
             _thread.Start();
         }
 
+        public void Dispose()
+        {
+            _thread.Abort();
+            _waitStart.Dispose();
+        }
+
         void ThreadProc()
         {
             _waitStart.WaitOne();
-            while (_source.MoveNext())
+            while (true)
             {
+                try
+                {
+                    if (!_source.MoveNext())
+                        break;
+                }
+                catch (Exception ex)
+                {
+                    try
+                    {
+                        _target.OnError(ex);
+                    }
+                    catch (Exception)
+                    {
+                    }
+
+                    break;
+                }
+
                 _eventsRead++;
 
                 try

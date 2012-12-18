@@ -20,31 +20,48 @@ namespace System.Reactive
             _deserializers = new List<IDeserializer<TInput>>();
             foreach (Type mapType in typeMaps)
             {
-                Type partitionInterface = null;
+                Type mapInterface = null;
+                var mapInstance = Activator.CreateInstance(mapType);
+
                 foreach (Type i in mapType.GetInterfaces())
                 {
                     if (i.Name == typeof(IPartitionableTypeMap<,>).Name)
                     {
-                        partitionInterface = i;
+                        mapInterface = i;
                         break;
                     }
                 }
 
-                if (partitionInterface != null)
+                if (mapInterface != null)
                 {
-                    var mapInstance = Activator.CreateInstance(mapType);
-                    var deserializerType = typeof(PartitionKeyDeserializer<,>).MakeGenericType(partitionInterface.GetGenericArguments());
+                    var deserializerType = typeof(PartitionKeyDeserializer<,>).MakeGenericType(mapInterface.GetGenericArguments());
                     var deserializerInstance = Activator.CreateInstance(deserializerType, mapInstance);
                     _deserializers.Add((IDeserializer<TInput>)deserializerInstance);
+                    continue;
                 }
-                else
+
+                mapInterface = mapType.GetInterface(typeof(IRootTypeMap<,>).Name);
+                if (mapInterface != null)
                 {
-                    var mapInstance = Activator.CreateInstance(mapType);
-                    var mapInterface = mapType.GetInterface(typeof(IRootTypeMap<,>).Name);
                     var deserializerType = typeof(RootDeserializer<,>).MakeGenericType(mapInterface.GetGenericArguments());
                     var deserializerInstance = Activator.CreateInstance(deserializerType, mapInstance);
                     _deserializers.Add((IDeserializer<TInput>)deserializerInstance);
+                    continue;
                 }
+
+                mapInterface = mapType.GetInterface(typeof(ITypeMap<>).Name);
+                if (mapInterface != null)
+                {
+                    var deserializerType = typeof(TransformDeserializer<>).MakeGenericType(mapInterface.GetGenericArguments());
+                    var deserializerInstance = Activator.CreateInstance(deserializerType, mapInstance);
+                    _deserializers.Add((IDeserializer<TInput>)deserializerInstance);
+                    continue;
+                }
+
+                throw new Exception("The type " + mapType.FullName + " must implement one of these interfaces :"
+                    + typeof(ITypeMap<>).Name + ", "
+                    + typeof(IRootTypeMap<,>).Name + ", "
+                    + typeof(IPartitionableTypeMap<,>).Name);
             }
         }
 

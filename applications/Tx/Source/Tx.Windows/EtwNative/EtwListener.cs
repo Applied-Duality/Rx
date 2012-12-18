@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using System.Security.Principal;
 using System.Threading;
 
 namespace Tx.Windows
@@ -25,6 +26,11 @@ namespace Tx.Windows
         {
             if (sessionName == null)
                 throw new ArgumentNullException("sessionName");
+
+            // I don't know how to check for "Performance Log Users" group
+            var principal = new WindowsPrincipal(WindowsIdentity.GetCurrent());
+            if (!principal.IsInRole(WindowsBuiltInRole.Administrator)) 
+                throw new Exception("To use ETW real-time session, you have to be Administrator");
 
             _observer = observer;
             _logFile = new EVENT_TRACE_LOGFILE

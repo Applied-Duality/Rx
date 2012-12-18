@@ -6,8 +6,11 @@ using System;
 
 namespace Tx.Windows.Microsoft_Windows_HttpService
 {
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 88, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 88, 0,
+    "ThreadGone", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events in thread pool")]
+
     [Format("Thread gone. Pool type: %1, active pools: %2, thread count: %3")]
+
     public class ThreadGone : SystemEvent
     {
         [EventField("win:AnsiString")]
@@ -20,8 +23,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public byte ThreadCount { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 87, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 87, 0,
+    "ThreadPoolTrim", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events in thread pool")]
+
     [Format("Thread pool trim. Pool type: %1, active pools: %2.")]
+
     public class ThreadPoolTrim : SystemEvent
     {
         [EventField("win:AnsiString")]
@@ -31,8 +37,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ushort ActivePools { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 86, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 86, 0,
+    "ThreadReady", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events in thread pool")]
+
     [Format("Thread ready. Pool type: %1, active pools: %2, thread count: %3")]
+
     public class ThreadReady : SystemEvent
     {
         [EventField("win:AnsiString")]
@@ -45,8 +54,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public byte ThreadCount { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 85, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 85, 0,
+    "ThreadPoolExtension", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events in thread pool")]
+
     [Format("Thread pool extension. Pool type: %1, active pools: %2.")]
+
     public class ThreadPoolExtension : SystemEvent
     {
         [EventField("win:AnsiString")]
@@ -56,8 +68,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ushort ActivePools { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 84, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 84, 0,
+    "UsePolicyBasedQoSFlow", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events occuring on a connection")]
+
     [Format("Policy-Based QoS: Connection %1, FlowHandle %2")]
+
     public class UsePolicyBasedQoSFlow : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -67,16 +82,22 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ulong FlowHandle { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 83, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 83, 0,
+    "ChannelBindPerResponseConfig", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events handling authentication (SSPI) and authentication cache")]
+
     [Format("Channel bind response config overwrites %1")]
+
     public class ChannelBindPerResponseConfig : SystemEvent
     {
         [EventField("win:AnsiString")]
         public string ReplaceConfigOf { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 82, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 82, 0,
+    "ChannelBindConfigCapture", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events handling authentication (SSPI) and authentication cache")]
+
     [Format("Captured channel bind config. Hardening %1, flags %2, service count %3")]
+
     public class ChannelBindConfigCapture : SystemEvent
     {
         [EventField("win:UInt8")]
@@ -89,8 +110,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint ServiceNameCount { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 81, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 81, 0,
+    "ServiceBindCheckComplete", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events handling authentication (SSPI) and authentication cache")]
+
     [Format("Service bind check done. Connection %1, Context %2-%3, status %4, target %5")]
+
     public class ServiceBindCheckComplete : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -109,8 +133,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public string Target { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 80, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 80, 0,
+    "ChannelBindAscParams", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events handling authentication (SSPI) and authentication cache")]
+
     [Format("Channel bind ASC parameters: connection %1, buffers %2, flags %3")]
+
     public class ChannelBindAscParams : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -123,8 +150,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint SecFlags { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 79, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 79, 0,
+    "FlatCacheRangeSend", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with URI cache")]
+
     [Format("Sending range from flat cache entry. CacheEntry %1, range %2-%3")]
+
     public class FlatCacheRangeSend : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -137,8 +167,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ulong Range1End { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 78, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 78, 0,
+    "MergeSlicesToCache", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with URI cache")]
+
     [Format("Merge slices to cache. CacheEntry %1, slices to merge %2, slices to cache %3")]
+
     public class MergeSlicesToCache : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -151,8 +184,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint NofSlicesInCache { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 77, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 77, 0,
+    "CachedSlicesMatchContent", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with URI cache")]
+
     [Format("Cached slices match content. Req. %1, CacheEntry %2, slices %3 (%4,%5,...), ranges %6 (%7-%8, %9-%10,...)")]
+
     public class CachedSlicesMatchContent : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -186,8 +222,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ulong Range2End { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 76, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 76, 0,
+    "SendSliceCacheContent", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with URI cache")]
+
     [Format("Send cached slices. Req. %1, CacheEntry %2, slices %3 (%4,%5,...), ranges %6 (%7-%8, %9-%10,...)")]
+
     public class SendSliceCacheContent : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -221,8 +260,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ulong Range2End { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 75, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 75, 0,
+    "BeginBuildingSlices", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with response handling", "Flagged on all HTTP events dealing with URI cache")]
+
     [Format("Begin building slices. Req. %1, slices %2 (%3,%4,...), ranges %5 (%6-%7, %8-%9,...)")]
+
     public class BeginBuildingSlices : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -253,8 +295,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ulong Range2End { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 74, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 74, 0,
+    "ResponseRangeProcessingOK", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with response handling")]
+
     [Format("Response range processing done. Req. %1, response content size %2, ranges %3 (%4-%5, %6-%7,...)")]
+
     public class ResponseRangeProcessingOK : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -279,8 +324,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ulong Range2End { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 73, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 73, 0,
+    "ConnectionFlowFailed", "win:Error", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events occuring on a connection")]
+
     [Format("[re]Setting QoS Flow failed: Connection %1, FlowHandle %2, status %3")]
+
     public class ConnectionFlowFailed : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -293,16 +341,22 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint Status { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 72, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 72, 0,
+    "RequestAssociatedToConfigurationFlow", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events occuring on a connection")]
+
     [Format("Assign to Configuration QoS Flow: FlowHandle %1")]
+
     public class RequestAssociatedToConfigurationFlow : SystemEvent
     {
         [EventField("win:Pointer")]
         public ulong FlowHandle { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 71, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 71, 0,
+    "SetConnectionFlow", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events occuring on a connection")]
+
     [Format("Setting flow: Connection %1, FlowHandle %2")]
+
     public class SetConnectionFlow : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -312,8 +366,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ulong FlowHandle { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 70, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 70, 0,
+    "FlowInitFailed", "win:Error", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events dealing with response handling")]
+
     [Format("QoS flow initialization failed: bandwidth %1, peak bandwidth %2, burst size %3, status %4")]
+
     public class FlowInitFailed : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -329,8 +386,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint Status { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 69, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 69, 0,
+    "CachedResponseFlowInit", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events dealing with response handling", "Flagged on all HTTP events dealing with URI cache")]
+
     [Format("Initialized QoS flow: FlowHandle %1, bandwidth %2, peak bandwidth %3, burst size %4")]
+
     public class CachedResponseFlowInit : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -346,8 +406,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint BurstSize { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 68, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 68, 0,
+    "UserResponseFlowInit", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events dealing with response handling")]
+
     [Format("Initialized QoS flow: FlowHandle %1, bandwidth %2, peak bandwidth %3, burst size %4")]
+
     public class UserResponseFlowInit : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -363,8 +426,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint BurstSize { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 67, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 67, 0,
+    "HotAddProcSucceeded", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with global driver settings")]
+
     [Format("Hot-add information: Current UxNumberOfProcessors: %1, comment: %2.")]
+
     public class HotAddProcSucceeded : SystemEvent
     {
         [EventField("win:UInt8")]
@@ -374,8 +440,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public string Comment { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 66, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 66, 0,
+    "HotAddProcFailed", "win:Error", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with global driver settings")]
+
     [Format("Http.sys failed to process CPU hot-add. Processor number: %1, reason: %2, status: %3.")]
+
     public class HotAddProcFailed : SystemEvent
     {
         [EventField("win:UInt8")]
@@ -388,8 +457,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint Status { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 65, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 65, 0,
+    "RequestCancelled", "win:Error", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events triggered on a request queue")]
+
     [Format("Server application canceled the processing of its request (request ID %1).")]
+
     public class RequestCancelled : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -402,8 +474,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public string RequestQueueName { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 64, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 64, 0,
+    "RequestRejected", "win:Error", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events triggered on a request queue")]
+
     [Format("Request (request ID %1) rejected due to reason: %2.")]
+
     public class RequestRejected : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -416,8 +491,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public string RequestQueueName { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 63, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 63, 0,
+    "SslSealMsg", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with response handling", "Flagged on all HTTP events handling ssl interactions")]
+
     [Format("Attempt to encrypt SSL data failed. Security status: %2.")]
+
     public class SslSealMsg : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -427,8 +505,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint SecStatus { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 62, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 62, 0,
+    "SslAsc", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events handling ssl interactions")]
+
     [Format("Attempt to perform SSL handshake failed. Security status: %2.")]
+
     public class SslAsc : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -438,8 +519,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint SecStatus { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 61, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 61, 0,
+    "SslEndpointConfigNotFound", "win:Error", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with endpoints", "Flagged on all HTTP events handling ssl interactions")]
+
     [Format("Cannot find SSL endpoint for inbound connection for local IP address and port %3.")]
+
     public class SslEndpointConfigNotFound : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -452,8 +536,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public byte[] Address { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 60, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 60, 0,
+    "SslQueryConnInfoFailed", "win:Error", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events occuring on a connection", "Flagged on all HTTP events handling ssl interactions")]
+
     [Format("Query for SSL connection parameters failed. Security status: %2. Connection will be reset.")]
+
     public class SslQueryConnInfoFailed : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -466,8 +553,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public string Detail { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 59, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 59, 0,
+    "SslUnsealMsg", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events handling ssl interactions")]
+
     [Format("Attempt to decrypt SSL data failed. Security status: %2.")]
+
     public class SslUnsealMsg : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -477,8 +567,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint SecStatus { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 58, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 58, 0,
+    "SslDisconnReq", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events occuring on a connection", "Flagged on all HTTP events handling ssl interactions")]
+
     [Format("SSL connection will be disconnected as initiated by the server application. Status: %2.")]
+
     public class SslDisconnReq : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -488,16 +581,22 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint Status { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 57, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 57, 0,
+    "SslDisconnEvent", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events occuring on a connection", "Flagged on all HTTP events handling ssl interactions")]
+
     [Format("SSL connection will be disconnected as initiated by the client.")]
+
     public class SslDisconnEvent : SystemEvent
     {
         [EventField("win:Pointer")]
         public ulong ConnectionObj { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 56, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 56, 0,
+    "SslEndpointCreationFailed", "win:Error", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with service setup", "Flagged on all HTTP events handling ssl interactions")]
+
     [Format("Failed to acquire handle for SSL credentials. Failure will be event logged. Security status: %2.")]
+
     public class SslEndpointCreationFailed : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -510,8 +609,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public string Detail { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 53, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 53, 0,
+    "ConnTimedOut", "win:Warning", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events occuring on a connection", "Flagged on all HTTP events setting/resetting/triggering timeouts")]
+
     [Format("HTTP timer %3 expired. The connection will be reset.")]
+
     public class ConnTimedOut : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -524,8 +626,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public string Timer { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 52, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 52, 0,
+    "ParseRequestFailed", "win:Error", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing")]
+
     [Format("Parsing of request (request ID %2) failed due to reason: %3. Request may not be compliant with HTTP/1.1.")]
+
     public class ParseRequestFailed : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -547,8 +652,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public byte[] HintData { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 51, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 51, 0,
+    "LogFileWrite", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with error log activities")]
+
     [Format("Entry has been written to %3 log file.")]
+
     public class LogFileWrite : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -573,8 +681,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint SiteId { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 50, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 50, 0,
+    "LogFileCreate", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with error log activities")]
+
     [Format("Successfully created new %2 log file %5.")]
+
     public class LogFileCreate : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -596,8 +707,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint SiteId { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 49, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 49, 0,
+    "LogFileCreateFailed", "win:Error", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with error log activities")]
+
     [Format("Failed to create %2 log file %5. Status: %1.")]
+
     public class LogFileCreateFailed : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -619,8 +733,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint SiteId { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 48, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 48, 0,
+    "LoggingConfig", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with error log activities")]
+
     [Format("Successfully configured %2 logging (directory %5).")]
+
     public class LoggingConfig : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -645,8 +762,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint SiteId { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 47, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 47, 0,
+    "LoggingConfigFailed", "win:Error", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with error log activities")]
+
     [Format("Failed to configure the %2 logging (directory %4), Status: %1.")]
+
     public class LoggingConfigFailed : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -668,8 +788,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint SiteId { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 46, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 46, 0,
+    "QosFlowSetReset", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events occuring on a connection")]
+
     [Format("Successfully associated QoS flow with connection (connection ID %1). Bandwidth throttled to: %2 Bytes per second.")]
+
     public class QosFlowSetReset : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -682,8 +805,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint Status { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 45, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 45, 0,
+    "AuthCacheEntryFreed", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events handling authentication (SSPI) and authentication cache")]
+
     [Format("Entry successfully removed from the authentication cache.")]
+
     public class AuthCacheEntryFreed : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -693,8 +819,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint Status { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 44, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 44, 0,
+    "AuthCacheEntryAdded", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events handling authentication (SSPI) and authentication cache")]
+
     [Format("Attempted to add entry to the %2 authentication cache. Status: %4.")]
+
     public class AuthCacheEntryAdded : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -710,8 +839,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint Status { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 43, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 43, 0,
+    "SspiCall", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events handling authentication (SSPI) and authentication cache")]
+
     [Format("Attempt (on connection ID %1) to authenticate client completed. Authentication type %2. Security status: %3.")]
+
     public class SspiCall : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -727,8 +859,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint AuthStatus { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 41, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 41, 0,
+    "SslAcceptStreamData", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events dealing with response handling", "Flagged on all HTTP events handling ssl interactions")]
+
     [Format("Passed plaintext data for encryption.")]
+
     public class SslAcceptStreamData : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -738,8 +873,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ulong ConnectionObj { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 40, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 40, 0,
+    "SslDlvrdStreamData", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events handling ssl interactions")]
+
     [Format("Decrypted SSL data is available for processing.")]
+
     public class SslDlvrdStreamData : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -749,8 +887,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ulong ConnectionObj { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 39, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 39, 0,
+    "SslRcvdRawData", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events occuring on a connection", "Flagged on all HTTP events handling ssl interactions")]
+
     [Format("Raw SSL data is available for processing.")]
+
     public class SslRcvdRawData : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -760,8 +901,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ulong ConnectionObj { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 38, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 38, 0,
+    "SslRcvClientCertFailed", "win:Error", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events handling ssl interactions")]
+
     [Format("Attempt by server application to receive client certificate failed with status: %1.")]
+
     public class SslRcvClientCertFailed : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -771,16 +915,22 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ulong ConnectionObj { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 37, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 37, 0,
+    "SslInititateSslRcvClientCert", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events handling ssl interactions")]
+
     [Format("Server application is attempting to receive the SSL client certificate, which will be provided if available. If the client certificate is not available, a renegotiation will be initiated.")]
+
     public class SslInititateSslRcvClientCert : SystemEvent
     {
         [EventField("win:Pointer")]
         public ulong ConnectionObj { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 36, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 36, 0,
+    "SslHandshakeComplete", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events handling ssl interactions")]
+
     [Format("SSL handshake completed with status: %1.")]
+
     public class SslHandshakeComplete : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -790,32 +940,44 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ulong ConnectionObj { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 35, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 35, 0,
+    "SslInitiateHandshake", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events handling ssl interactions")]
+
     [Format("Initiating SSL handshake.")]
+
     public class SslInitiateHandshake : SystemEvent
     {
         [EventField("win:Pointer")]
         public ulong ConnectionObj { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 34, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 34, 0,
+    "SslConnEvent", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events occuring on a connection", "Flagged on all HTTP events handling ssl interactions")]
+
     [Format("Initiating SSL connection.")]
+
     public class SslConnEvent : SystemEvent
     {
         [EventField("win:Pointer")]
         public ulong ConnectionObj { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 33, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 33, 0,
+    "RemAllUrls", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events triggered on a URL group")]
+
     [Format("Removed all URLs from URL group %1.")]
+
     public class RemAllUrls : SystemEvent
     {
         [EventField("win:UInt64")]
         public ulong UrlGroupId { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 32, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 32, 0,
+    "RemUrl", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events triggered on a URL group")]
+
     [Format("Removed URL (%2) from URL group (%1).")]
+
     public class RemUrl : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -825,8 +987,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public string Url { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 31, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 31, 0,
+    "AddUrl", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events triggered on a URL group")]
+
     [Format("Attempted to add URL (%2) to URL group (%1). Status: %3.")]
+
     public class AddUrl : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -839,8 +1004,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint Status { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 30, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 30, 0,
+    "ChgReqQueueProp", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events triggered on a request queue")]
+
     [Format("Attempted to set request queue property: %1. Status: %2.")]
+
     public class ChgReqQueueProp : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -850,8 +1018,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint Status { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 29, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 29, 0,
+    "ChgSrvSesProp", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events triggered on a server session")]
+
     [Format("Attempted to set server session property: %1. Status: %2.")]
+
     public class ChgSrvSesProp : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -861,8 +1032,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint Status { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 28, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 28, 0,
+    "ChgUrlGrpProp", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events triggered on a URL group")]
+
     [Format("Attempted to set URL group property: %1. Status: %2.")]
+
     public class ChgUrlGrpProp : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -872,8 +1046,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint Status { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 27, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 27, 0,
+    "FlushedCache", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with URI cache")]
+
     [Format("Flushed entry (URI %1) from the cache.")]
+
     public class FlushedCache : SystemEvent
     {
         [EventField("win:UnicodeString")]
@@ -895,8 +1072,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ulong ExpirationTime { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 26, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 26, 0,
+    "AddCacheEntryFailed", "win:Error", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with URI cache")]
+
     [Format("Failed to add an entry (URI %1) to the cache. Status: %2.")]
+
     public class AddCacheEntryFailed : SystemEvent
     {
         [EventField("win:UnicodeString")]
@@ -906,8 +1086,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint ErrorStatus { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 25, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 25, 0,
+    "AddedCacheEntry", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with URI cache")]
+
     [Format("Successfully added entry (URI %1) to cache.")]
+
     public class AddedCacheEntry : SystemEvent
     {
         [EventField("win:UnicodeString")]
@@ -929,16 +1112,22 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ulong ExpirationTime { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 24, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 24, 0,
+    "ConnCleanup", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events occuring on a connection")]
+
     [Format("Connection (connection pointer %1) cleanup started due to either the sending of a TCP Reset, receiving of a TCP Reset, or after the mutual exchange of TCP Fins.")]
+
     public class ConnCleanup : SystemEvent
     {
         [EventField("win:Pointer")]
         public ulong ConnectionObj { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 23, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 23, 0,
+    "ConnClose", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events occuring on a connection")]
+
     [Format("Client closed the connection (connection pointer %1). Status of whether closed by TCP Reset: %2.")]
+
     public class ConnClose : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -948,8 +1137,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint Abortive { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 22, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 22, 0,
+    "ConnIdAssgn", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events occuring on a connection")]
+
     [Format("Connection ID (%2) assigned to connection and request (request ID %1) will be parsed.")]
+
     public class ConnIdAssgn : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -962,8 +1154,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ulong ConnectionObj { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 21, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 21, 0,
+    "ConnConnect", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events occuring on a connection")]
+
     [Format("New connection created (local IP address %3 and remote address %5).")]
+
     public class ConnConnect : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -982,8 +1177,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public byte[] RemoteAddr { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 20, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 20, 0,
+    "CreatedSslCred", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with service setup", "Flagged on all HTTP events handling ssl interactions")]
+
     [Format("SSL credentials for IP address and port %3 successfully created.")]
+
     public class CreatedSslCred : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -1023,8 +1221,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public string CtlStoreName { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 19, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 19, 0,
+    "ReadIpListEntry", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with service setup")]
+
     [Format("Successfully read the IP listen list for IP address %1.")]
+
     public class ReadIpListEntry : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -1034,8 +1235,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public byte[] IpAddress { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 18, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 18, 0,
+    "ResvUrl", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with service setup")]
+
     [Format("Attempted to reserve URL (%1). Status %2.")]
+
     public class ResvUrl : SystemEvent
     {
         [EventField("win:UnicodeString")]
@@ -1045,8 +1249,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint ReserveStatus { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 17, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 17, 0,
+    "CachedNotModified", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with response handling", "Flagged on all HTTP events dealing with URI cache")]
+
     [Format("Response (request pointer %1, site ID %2, number of bytes %3) queued for sending with status code 304 (cache not modified).")]
+
     public class CachedNotModified : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -1059,8 +1266,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint BytesSent { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 16, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 16, 0,
+    "SrvdFrmCache", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with response handling", "Flagged on all HTTP events dealing with URI cache")]
+
     [Format("Response (request pointer %1, site ID %2, number of bytes %3) queued for sending from the cache.")]
+
     public class SrvdFrmCache : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -1073,8 +1283,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint BytesSent { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 15, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 15, 0,
+    "SndError", "win:Error", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events dealing with response handling")]
+
     [Format("Error %3 occurred while sending (corresponding to request ID %1). A TCP Reset will be sent.")]
+
     public class SndError : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -1087,8 +1300,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint Status { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 14, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 14, 0,
+    "LastSndError", "win:Error", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events dealing with response handling")]
+
     [Format("Error occurred while sending the last response (corresponding to request ID %1) with status code %2. A TCP Reset has been sent.")]
+
     public class LastSndError : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -1098,8 +1314,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ushort HttpStatus { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 13, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 13, 0,
+    "ZeroSend", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events dealing with response handling", "Flagged on all HTTP events occuring on a connection")]
+
     [Format("Response sent (corresponding to request ID %1) with status code %2. If disconnect is required, a TCP FIN has been sent.")]
+
     public class ZeroSend : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -1109,8 +1328,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ushort HttpStatus { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 12, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 12, 0,
+    "FastSend", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events dealing with response handling")]
+
     [Format("Queued last response (corresponding to request ID %1) for sending. Status code is %2.")]
+
     public class FastSend : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -1120,8 +1342,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ushort HttpStatus { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 11, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 11, 0,
+    "CachedAndSend", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with response handling", "Flagged on all HTTP events dealing with URI cache")]
+
     [Format("Cached the response (corresponding to request ID %1) with status code %2. Response to be sent.")]
+
     public class CachedAndSend : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -1131,8 +1356,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ushort HttpStatus { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 10, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 10, 0,
+    "SendComplete", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events dealing with response handling", "Flagged on all HTTP events occuring on a connection")]
+
     [Format("Response ready for send (corresponding to request ID %1) with status code %2.")]
+
     public class SendComplete : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -1142,16 +1370,22 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ushort HttpStatus { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 9, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 9, 0,
+    "FastRespLast", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events dealing with response handling")]
+
     [Format("Server application passed the last response (corresponding to request ID %1).")]
+
     public class FastRespLast : SystemEvent
     {
         [EventField("win:UInt64")]
         public ulong RequestId { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 8, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 8, 0,
+    "FastResp", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events dealing with response handling")]
+
     [Format("Server application passed response (request ID %1, connection ID %2, method %4, header length %5, number of entity chunks %6, cache policy %7) with status code %3.")]
+
     public class FastResp : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -1176,16 +1410,22 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint CachePolicy { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 7, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 7, 0,
+    "RecvBodyLast", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events dealing with response handling")]
+
     [Format("Server application passed the last entity body for request ID %1.")]
+
     public class RecvBodyLast : SystemEvent
     {
         [EventField("win:UInt64")]
         public ulong RequestId { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 6, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 6, 0,
+    "RecvBody", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events dealing with response handling")]
+
     [Format("Server application passed entity body for request ID %1 (connection ID %2).")]
+
     public class RecvBody : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -1195,16 +1435,22 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public ulong ConnectionId { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 5, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 5, 0,
+    "RecvRespLast", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events dealing with response handling")]
+
     [Format("Server application passed the last response (corresponding to request ID %1).")]
+
     public class RecvRespLast : SystemEvent
     {
         [EventField("win:UInt64")]
         public ulong RequestId { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 4, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 4, 0,
+    "RecvResp", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events dealing with response handling")]
+
     [Format("Server application passed response (request ID %1, connection ID %2, method %4, header length %5, number of entity chunks %6, cache policy %7) with status code %3.")]
+
     public class RecvResp : SystemEvent
     {
         [EventField("win:UInt64")]
@@ -1229,8 +1475,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint CachePolicy { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 3, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 3, 0,
+    "Deliver", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events triggered on a request queue")]
+
     [Format("Delivered request to server application (request pointer %1, request ID %2, site ID %3) from request queue %4 for URI %5 with status %6.")]
+
     public class Deliver : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -1252,8 +1501,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public uint Status { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 2, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 2, 0,
+    "Parse", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing")]
+
     [Format("Parsed request (request pointer %1, method %2) with URI %3.")]
+
     public class Parse : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -1266,8 +1518,11 @@ namespace Tx.Windows.Microsoft_Windows_HttpService
         public string Url { get; set; }
     }
 
-    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 1, 0)]
+    [ManifestEvent("{dd5ef90a-6398-47a4-ad34-4dcecdef795f}", 1, 0,
+    "RecvReq", "win:Informational", "Microsoft-Windows-HttpService/Trace", "Flagged on all HTTP events dealing with request processing", "Flagged on all HTTP events triggered on a request queue")]
+
     [Format("Request received (request ID %1) on connection (connection ID %2) from remote address %4.")]
+
     public class RecvReq : SystemEvent
     {
         [EventField("win:UInt64")]

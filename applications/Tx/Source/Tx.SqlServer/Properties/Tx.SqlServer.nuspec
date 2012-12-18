@@ -4,7 +4,7 @@
     <id>Tx.SqlServer</id>
     <title>Tx.SqlServer</title>
     <!-- Automatically updated by build, keeping fixed dev build number here in case of local build -->
-    <version>1.0.3-beta</version>
+    <version>1.0.4-beta</version>
     <description>IObservable sources for traces from SQL Server components. So far, this incldes SQL Server Extended Events (XEvent)</description>
     <authors>Microsoft</authors>
     <!--
@@ -16,7 +16,7 @@
     <tags>Tx Traces Logs Playback Replay XEvent</tags>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>
-      <dependency id="Tx.Core" version="1.0.3-beta" />
+      <dependency id="Tx.Core" version="1.0.4-beta" />
     </dependencies>
   </metadata>
 </package>

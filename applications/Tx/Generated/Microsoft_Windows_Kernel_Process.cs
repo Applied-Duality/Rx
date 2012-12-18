@@ -6,8 +6,11 @@ using System;
 
 namespace Tx.Windows.Microsoft_Windows_Kernel_Process
 {
-    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 1, 0)]
+    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 1, 0,
+    "", "win:Informational", "Microsoft-Windows-Kernel-Process/Analytic", "WINEVENT_KEYWORD_PROCESS")]
+
     [Format("Process %1 started at time %2 by parent %3 running in session %4 with name %5.")]
+
     public class ProcessStart_V0 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -26,8 +29,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Process
         public string ImageName { get; set; }
     }
 
-    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 1, 1)]
+    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 1, 1,
+    "", "win:Informational", "Microsoft-Windows-Kernel-Process/Analytic", "WINEVENT_KEYWORD_PROCESS")]
+
     [Format("Process %1 started at time %2 by parent %3 running in session %4 with name %6.")]
+
     public class ProcessStart_V1 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -49,8 +55,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Process
         public string ImageName { get; set; }
     }
 
-    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 2, 0)]
+    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 2, 0,
+    "", "win:Informational", "Microsoft-Windows-Kernel-Process/Analytic", "WINEVENT_KEYWORD_PROCESS")]
+
     [Format("Process %1 (which started at time %2) stopped at time %3 with exit code %4.")]
+
     public class ProcessStop_V0 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -81,8 +90,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Process
         public string ImageName { get; set; }
     }
 
-    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 2, 1)]
+    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 2, 1,
+    "", "win:Informational", "Microsoft-Windows-Kernel-Process/Analytic", "WINEVENT_KEYWORD_PROCESS")]
+
     [Format("Process %1 (which started at time %2) stopped at time %3 with exit code %4.")]
+
     public class ProcessStop_V1 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -131,8 +143,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Process
         public string ImageName { get; set; }
     }
 
-    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 3, 0)]
+    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 3, 0,
+    "", "win:Informational", "Microsoft-Windows-Kernel-Process/Analytic", "WINEVENT_KEYWORD_THREAD")]
+
     [Format("Thread %2 (in Process %1) started.")]
+
     public class ThreadStart_V0 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -163,8 +178,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Process
         public ulong TebBase { get; set; }
     }
 
-    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 3, 1)]
+    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 3, 1,
+    "", "win:Informational", "Microsoft-Windows-Kernel-Process/Analytic", "WINEVENT_KEYWORD_THREAD")]
+
     [Format("Thread %2 (in Process %1) started.")]
+
     public class ThreadStart_V1 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -198,8 +216,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Process
         public uint SubProcessTag { get; set; }
     }
 
-    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 4, 0)]
+    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 4, 0,
+    "", "win:Informational", "Microsoft-Windows-Kernel-Process/Analytic", "WINEVENT_KEYWORD_THREAD")]
+
     [Format("Thread %2 (in Process %1) stopped.")]
+
     public class ThreadStop_V0 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -230,8 +251,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Process
         public ulong TebBase { get; set; }
     }
 
-    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 4, 1)]
+    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 4, 1,
+    "", "win:Informational", "Microsoft-Windows-Kernel-Process/Analytic", "WINEVENT_KEYWORD_THREAD")]
+
     [Format("Thread %2 (in Process %1) stopped.")]
+
     public class ThreadStop_V1 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -268,8 +292,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Process
         public ulong CycleTime { get; set; }
     }
 
-    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 5, 0)]
+    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 5, 0,
+    "", "win:Informational", "Microsoft-Windows-Kernel-Process/Analytic", "WINEVENT_KEYWORD_IMAGE")]
+
     [Format("Process %3 had an image loaded with name %7.")]
+
     public class ImageLoad : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -294,8 +321,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Process
         public string ImageName { get; set; }
     }
 
-    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 6, 0)]
+    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 6, 0,
+    "", "win:Informational", "Microsoft-Windows-Kernel-Process/Analytic", "WINEVENT_KEYWORD_IMAGE")]
+
     [Format("Process %3 had an image unloaded with name %7.")]
+
     public class ImageUnload : SystemEvent
     {
         [EventField("win:Pointer")]
@@ -320,8 +350,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Process
         public string ImageName { get; set; }
     }
 
-    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 7, 0)]
+    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 7, 0,
+    "", "win:Informational", "Microsoft-Windows-Kernel-Process/Analytic", "WINEVENT_KEYWORD_CPU_PRIORITY")]
+
     [Format("Base CPU priority of thread %2 in process %1 was changed from %3 to %4.")]
+
     public class ThreadCpuBasePriorityChange : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -337,8 +370,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Process
         public byte NewPriority { get; set; }
     }
 
-    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 8, 0)]
+    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 8, 0,
+    "", "win:Informational", "Microsoft-Windows-Kernel-Process/Analytic", "WINEVENT_KEYWORD_CPU_PRIORITY")]
+
     [Format("CPU priority of thread %2 in process %1 was changed from %3 to %4.")]
+
     public class ThreadCpuPriorityChange : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -354,8 +390,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Process
         public byte NewPriority { get; set; }
     }
 
-    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 9, 0)]
+    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 9, 0,
+    "", "win:Informational", "Microsoft-Windows-Kernel-Process/Analytic", "WINEVENT_KEYWORD_OTHER_PRIORITY")]
+
     [Format("Page priority of thread %2 in process %1 was changed from %3 to %4.")]
+
     public class ThreadPagePriorityChange : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -371,8 +410,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Process
         public byte NewPriority { get; set; }
     }
 
-    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 10, 0)]
+    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 10, 0,
+    "", "win:Informational", "Microsoft-Windows-Kernel-Process/Analytic", "WINEVENT_KEYWORD_OTHER_PRIORITY")]
+
     [Format("I/O priority of thread %2 in process %1 was changed from %3 to %4.")]
+
     public class ThreadIoPriorityChange : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -388,16 +430,22 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Process
         public byte NewPriority { get; set; }
     }
 
-    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 11, 0)]
+    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 11, 0,
+    "", "win:Informational", "Microsoft-Windows-Kernel-Process/Analytic", "WINEVENT_KEYWORD_PROCESS_FREEZE")]
+
     [Format("Execution of the process %1 has been suspended.")]
+
     public class ProcessFreezeEvent : SystemEvent
     {
         [EventField("win:UInt32")]
         public uint FrozenProcessID { get; set; }
     }
 
-    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 12, 0)]
+    [ManifestEvent("{22fb2cd6-0e7b-422b-a0c7-2fad1fd0e716}", 12, 0,
+    "", "win:Informational", "Microsoft-Windows-Kernel-Process/Analytic", "WINEVENT_KEYWORD_PROCESS_FREEZE")]
+
     [Format("Execution of the process %1 has been resumed.")]
+
     public class ProcessThawEvent : SystemEvent
     {
         [EventField("win:UInt32")]

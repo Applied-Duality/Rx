@@ -4,10 +4,11 @@
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     
-    class BufferQueue<T> : IObserver<T>, IEnumerator<T>
+    class BufferQueue<T> : IObserver<T>, IEnumerator<T>, IDisposable
     {
         BlockingCollection<T> _queue = new BlockingCollection<T>();
         T _current;
+        Exception _error;
 
         public void OnCompleted()
         {
@@ -16,7 +17,8 @@
 
         public void OnError(Exception error)
         {
-            throw error;
+            _error = error;
+            _queue.CompleteAdding();
         }
 
         public void OnNext(T value)
@@ -41,6 +43,9 @@
 
         public bool MoveNext()
         {
+            if (_error != null)
+                throw _error;
+
             // Bart, I tried with TryTake, and it sometimes returns immediately on empty queue (so tests fail)
             try
             {
@@ -49,6 +54,9 @@
             }
             catch (InvalidOperationException)
             {
+                if (_error != null)
+                    throw _error;
+
                 return false;
             }
         }
@@ -56,6 +64,11 @@
         public void Reset()
         {
             throw new NotImplementedException();
+        }
+
+        void IDisposable.Dispose()
+        {
+            _queue.Dispose();
         }
     }
 }

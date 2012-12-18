@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 
 namespace Tx.Windows
-{
+{    
     /// <summary>
     /// Observable that will read .etl files and push the 
     /// and produce the events in the ETW native format
@@ -39,7 +39,7 @@ namespace Tx.Windows
                 _logFiles[i] = new EVENT_TRACE_LOGFILE
                 {
                     ProcessTraceMode = EtwNativeMethods.TraceModeEventRecord,
-                    LogFileName = etlFiles[i],
+                    LogFileName = Path.GetFullPath(etlFiles[i]),
                     EventRecordCallback = EtwCallback
                 };
                 _logFileHandles[i] = GCHandle.Alloc(_logFiles[i]);
@@ -116,8 +116,14 @@ namespace Tx.Windows
                 for (int i = 0; i < _handles.Length; i++)
                 {
                     EtwNativeMethods.CloseTrace(_handles[i]);
+                    _logFileHandles[i].Free();
                 }
             }
+        }
+
+        ~EtwFileReader()
+        {
+            Dispose();
         }
     }
 }

@@ -4,7 +4,7 @@
     <id>Tx.Windows.TypeGeneration</id>
     <title>Tx.Windows.TypeGeneration</title>
     <!-- Automatically updated by build, keeping fixed dev build number here in case of local build -->
-    <version>1.0.3-beta</version>
+    <version>1.0.4-beta</version>
     <description>Generation of C# types representing Event Tracing for Windows (ETW) and Event Log events</description>
     <authors>Microsoft</authors>
     <!--
@@ -16,8 +16,8 @@
       <tags>Tx Traces Logs Playback Replay ETW</tags>
       <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>
-      <dependency id="Tx.Core" version="1.0.3-beta" />
-      <dependency id="Tx.Windows" version="1.0.3-beta" />
+      <dependency id="Tx.Core" version="1.0.4-beta" />
+      <dependency id="Tx.Windows" version="1.0.4-beta" />
     </dependencies>
   </metadata>
 </package>

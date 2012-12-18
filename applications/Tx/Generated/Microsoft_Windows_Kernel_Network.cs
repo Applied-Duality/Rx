@@ -6,8 +6,11 @@ using System;
 
 namespace Tx.Windows.Microsoft_Windows_Kernel_Network
 {
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 10, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 10, 0,
+    "Data sent.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV4")]
+
     [Format("TCPv4: %2 bytes transmitted from %4:%6 to %3:%5.")]
+
     public class KNetEvt_SendIPV4 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -41,8 +44,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public uint connid { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 11, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 11, 0,
+    "Data received.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV4")]
+
     [Format("TCPv4: %2 bytes received from %4:%6 to %3:%5.")]
+
     public class KNetEvt_RecvIPV4 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -70,8 +76,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public uint connid { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 12, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 12, 0,
+    "Connection attempted.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV4")]
+
     [Format("TCPv4: Connection attempted between %4:%6 and %3:%5.")]
+
     public class KNetEvt_ConnectIPV4 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -120,8 +129,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public uint connid { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 13, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 13, 0,
+    "Disconnect issued.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV4")]
+
     [Format("TCPv4: Connection closed between %4:%6 and %3:%5.")]
+
     public class KNetEvt_DisconnectIPV4 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -149,8 +161,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public uint connid { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 14, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 14, 0,
+    "Data retransmitted.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV4")]
+
     [Format("TCPv4: %2 bytes retransmitted from %4:%6 to %3:%5.")]
+
     public class KNetEvt_RetransmitIPV4 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -178,8 +193,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public uint connid { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 15, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 15, 0,
+    "Connection accepted.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV4")]
+
     [Format("TCPv4: Connection established between %4:%6 and %3:%5.")]
+
     public class KNetEvt_AcceptIPV4 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -228,8 +246,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public uint connid { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 16, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 16, 0,
+    "Reconnect attempted.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV4")]
+
     [Format("TCPv4: Reconnect attempt between %4:%6 and %3:%5.")]
+
     public class KNetEvt_ReconnectIPV4 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -257,8 +278,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public uint connid { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 17, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 17, 0,
+    "TCP connection attempt failed.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV4", "KERNEL_NETWORK_KEYWORD_IPV6")]
+
     [Format("TCPv4: Connection attempt failed with error code %2.")]
+
     public class KNetEvt_Fail : SystemEvent
     {
         [EventField("win:UInt16")]
@@ -268,8 +292,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public ushort FailureCode { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 18, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 18, 0,
+    "Protocol copied data on behalf of user.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV4")]
+
     [Format("TCPv4: %2 bytes copied in protocol on behalf of user for connection between %4:%6 and %3:%5.")]
+
     public class KNetEvt_TcpCopyIPV4 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -297,8 +324,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public uint connid { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 42, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 42, 0,
+    "Data sent over UDP protocol.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV4")]
+
     [Format("UDPv4: %2 bytes transmitted from %4:%6 to %3:%5.")]
+
     public class KNetEvt_SendIPV4Udp : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -326,8 +356,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public uint connid { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 43, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 43, 0,
+    "Data received over UDP protocol.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV4")]
+
     [Format("UDPv4: %2 bytes received from %4:%6 to %3:%5.")]
+
     public class KNetEvt_RecvIPV4Udp : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -355,8 +388,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public uint connid { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 49, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 49, 0,
+    "UDP connection attempt failed.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV4", "KERNEL_NETWORK_KEYWORD_IPV6")]
+
     [Format("UDPv4: Connection attempt failed with error code %2.")]
+
     public class KNetEvt_FailUdp : SystemEvent
     {
         [EventField("win:UInt16")]
@@ -366,8 +402,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public ushort FailureCode { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 26, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 26, 0,
+    "Data sent.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV6")]
+
     [Format("TCPv6: %2 bytes transmitted from %4:%6 to %3:%5.")]
+
     public class KNetEvt_SendIPV6 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -401,8 +440,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public uint connid { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 27, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 27, 0,
+    "Data received.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV6")]
+
     [Format("TCPv6: %2 bytes received from %4:%6 to %3:%5.")]
+
     public class KNetEvt_RecvIPV6 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -430,8 +472,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public uint connid { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 28, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 28, 0,
+    "Connection attempted.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV6")]
+
     [Format("TCPv6: Connection attempted between %4:%6 and %3:%5.")]
+
     public class KNetEvt_ConnectIPV6 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -480,8 +525,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public uint connid { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 29, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 29, 0,
+    "Disconnect issued.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV6")]
+
     [Format("TCPv6: Connection closed between %4:%6 and %3:%5.")]
+
     public class KNetEvt_DisconnectIPV6 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -509,8 +557,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public uint connid { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 30, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 30, 0,
+    "Data retransmitted.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV6")]
+
     [Format("TCPv6: %2 bytes retransmitted from %4:%6 to %3:%5.")]
+
     public class KNetEvt_RetransmitIPV6 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -538,8 +589,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public uint connid { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 31, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 31, 0,
+    "Connection accepted.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV6")]
+
     [Format("TCPv6: Connection established between %4:%6 and %3:%5.")]
+
     public class KNetEvt_AcceptIPV6 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -588,8 +642,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public uint connid { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 32, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 32, 0,
+    "Reconnect attempted.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV6")]
+
     [Format("TCPv6: Reconnect attempt between %4:%6 and %3:%5.")]
+
     public class KNetEvt_ReconnectIPV6 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -617,8 +674,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public uint connid { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 34, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 34, 0,
+    "Protocol copied data on behalf of user.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV6")]
+
     [Format("TCPv6: %2 bytes copied in protocol on behalf of user for connection between %4:%6 and %3:%5.")]
+
     public class KNetEvt_TcpCopyIPV6 : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -646,8 +706,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public uint connid { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 58, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 58, 0,
+    "Data sent over UDP protocol.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV6")]
+
     [Format("UDPv6: %2 bytes transmitted from %4:%6 to %3:%5.")]
+
     public class KNetEvt_SendIPV6Udp : SystemEvent
     {
         [EventField("win:UInt32")]
@@ -675,8 +738,11 @@ namespace Tx.Windows.Microsoft_Windows_Kernel_Network
         public uint connid { get; set; }
     }
 
-    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 59, 0)]
+    [ManifestEvent("{7dd42a49-5329-4832-8dfd-43d979153a88}", 59, 0,
+    "Data received over UDP protocol.", "win:Informational", "Microsoft-Windows-Kernel-Network/Analytic", "KERNEL_NETWORK_KEYWORD_IPV6")]
+
     [Format("UDPv6: %2 bytes received from %4:%6 to %3:%5.")]
+
     public class KNetEvt_RecvIPV6Udp : SystemEvent
     {
         [EventField("win:UInt32")]

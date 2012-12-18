@@ -1,44 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace System.Reactive
+﻿namespace System.Reactive
 {
-    public sealed class TransformDeserializer<TInput, TOutputBase> : IDeserializer, IObserver<TInput> where TOutputBase : new()
+    public sealed class TransformDeserializer<TInput> : IDeserializer<TInput>
     {
-        IObserver<Timestamped<object>> _observer;
         Func<TInput, DateTimeOffset> _timeFunction;
         Func<TInput, object> _transform;
+        bool _enabled = false;
 
-
-        public TransformDeserializer(ITypeMap<TInput> typeMap, IObserver<Timestamped<object>> observer)
+        public TransformDeserializer(ITypeMap<TInput> typeMap)
         {
-            _observer = observer;
-            _transform = typeMap.GetTransform(typeof(TOutputBase));
             _timeFunction = typeMap.TimeFunction;
+            _transform = typeMap.GetTransform(typeof(TInput));
         }
 
         public void AddKnownType(Type type)
         {
-            // irrelevant, as this deserializer expects all events to have the same schema
+            if (type == typeof(TInput))
+                _enabled = true;
         }
 
-        public void OnCompleted()
+        public bool TryDeserialize(TInput value, out Timestamped<object> ts)
         {
-            _observer.OnCompleted();
-        }
+            if (!_enabled)
+            {
+                ts = default(Timestamped<object>);
+                return false;
+            }
 
-        public void OnError(Exception error)
-        {
-            _observer.OnError(error);
-        }
-
-        public void OnNext(TInput value)
-        {
-             object o = _transform(value);
-            Timestamped<object> ts = new Timestamped<object>(o, _timeFunction(value));
-            _observer.OnNext(ts);
+            object o = _transform(value);
+            ts = new Timestamped<object>(o, _timeFunction(value));
+            return true;
         }
     }
 }

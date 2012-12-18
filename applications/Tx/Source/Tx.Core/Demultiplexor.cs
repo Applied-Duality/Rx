@@ -46,7 +46,7 @@ namespace System.Reactive
         {
             foreach (IObserver<object> output in _outputs.Values)
             {
-                output.OnCompleted();
+                output.OnError(error);
             }
         }
 

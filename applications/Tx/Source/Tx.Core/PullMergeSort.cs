@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-
-namespace System.Reactive
+﻿namespace System.Reactive
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
+
     public partial class PullMergeSort<T> : IEnumerable<T>
     {
         Func<T, DateTime> _keyFunction;
