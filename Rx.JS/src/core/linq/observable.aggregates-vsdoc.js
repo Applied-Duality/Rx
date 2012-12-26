@@ -65,6 +65,28 @@
         return hasSeed ? this.scan(seed, accumulator).startWith(seed).finalValue() : this.scan(accumulator).finalValue();
     };
 
+    observableProto.reduce = function () {
+        /// <summary>
+        /// Alias for aggregate. Applies an accumulator function over an observable sequence, returning the result of the aggregation as a single element in the result sequence. The specified seed value is used as the initial accumulator value.
+        /// For aggregation behavior with incremental intermediate results, see Observable.scan.
+        /// &#10;
+        /// &#10;1 - res = source.reduce(function (acc, x) { return acc + x; });
+        /// &#10;2 - res = source.reduce(function (acc, x) { return acc + x; }, 0);
+        /// </summary>
+        /// <param name="accumulator">An accumulator function to be invoked on each element.</param>
+        /// <param name="seed">[Optional] The initial accumulator value.</param>        
+        /// <returns>An observable sequence containing a single element with the final accumulator value.</returns>
+        var seed, hasSeed, accumulator;
+        if (arguments.length === 2) {
+            seed = arguments[1];
+            hasSeed = true;
+            accumulator = arguments[0];
+        } else {
+            accumulator = arguments[0];
+        }
+        return hasSeed ? this.scan(seed, accumulator).startWith(seed).finalValue() : this.scan(accumulator).finalValue();
+    };
+    
     observableProto.any = function (predicate) {
         /// <summary>
         /// Determines whether any element of an observable sequence satisfies a condition if present, else if any items are in the sequence.

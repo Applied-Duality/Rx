@@ -54,7 +54,19 @@
         }
         return hasSeed ? this.scan(seed, accumulator).startWith(seed).finalValue() : this.scan(accumulator).finalValue();
     };
-
+    
+    observableProto.reduce = function () {
+        var seed, hasSeed, accumulator;
+        if (arguments.length === 2) {
+            seed = arguments[1];
+            hasSeed = true;
+            accumulator = arguments[0];
+        } else {
+            accumulator = arguments[0];
+        }
+        return hasSeed ? this.scan(seed, accumulator).startWith(seed).finalValue() : this.scan(accumulator).finalValue();
+    };
+    
     observableProto.any = function (predicate) {
         var source = this;
         return predicate 

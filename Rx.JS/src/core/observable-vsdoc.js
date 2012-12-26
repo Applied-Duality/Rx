@@ -48,6 +48,23 @@
             return this._subscribe(subscriber);
         };
 
+        observableProto.forEach = function (observerOrOnNext, onError, onCompleted) {
+            /// <summary>
+            /// Alias for subscribe. Accepts an observer and traverses the observable sequence.
+            /// &#10;
+            /// &#10;1 - source.forEach();
+            /// &#10;2 - source.forEach(observer);
+            /// &#10;3 - source.forEach(function (x) { console.log(x); });
+            /// &#10;4 - source.forEach(function (x) { console.log(x); }, function (err) { console.log(err); });
+            /// &#10;5 - source.forEach(function (x) { console.log(x); }, function (err) { console.log(err); }, function () { console.log('done'); });
+            /// </summary>
+            /// <param name="observerOrOnNext">[Optional] The object that is to receive notifications or an action to invoke for each element in the observable sequence.</param>
+            /// <param name="onError">[Optional] Action to invoke upon exceptional termination of the observable sequence.</param>
+            /// <param name="onCompleted">[Optional] Action to invoke upon graceful termination of the observable sequence.</param>
+            /// <returns>The source sequence whose subscriptions and unsubscriptions happen on the specified scheduler.</returns>            
+            return this.subscribe.apply(this, Array.prototype.slice.call(arguments));
+        };
+        
         observableProto.toArray = function () {
             /// <summary>
             /// Creates a list from an observable sequence.

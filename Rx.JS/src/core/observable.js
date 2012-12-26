@@ -35,6 +35,8 @@
             return this._subscribe(subscriber);
         };
 
+        observableProto.forEach = observableProto.subscribe;
+        
         observableProto.toArray = function () {
             function accumulator(list, i) {
                 list.push(i);
