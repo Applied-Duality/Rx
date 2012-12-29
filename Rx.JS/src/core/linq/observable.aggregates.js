@@ -56,14 +56,11 @@
     };
     
     observableProto.reduce = function () {
-        var seed, hasSeed, accumulator;
+        var seed, hasSeed, accumulator = arguments[0];
         if (arguments.length === 2) {
-            seed = arguments[1];
             hasSeed = true;
-            accumulator = arguments[0];
-        } else {
-            accumulator = arguments[0];
-        }
+            seed = arguments[1];
+        } 
         return hasSeed ? this.scan(seed, accumulator).startWith(seed).finalValue() : this.scan(accumulator).finalValue();
     };
     
@@ -82,6 +79,8 @@
             });
     };
 
+    observableProto.some = observableProto.any;
+    
     observableProto.isEmpty = function () {
         return this.any().select(function (b) { return !b; });
     };
@@ -94,6 +93,8 @@
         });
     };
 
+    observableProto.every = observableProto.all;
+    
     observableProto.contains = function (value, comparer) {
         comparer || (comparer = defaultComparer);
         return this.where(function (v) {
