@@ -159,6 +159,8 @@
             }, observer.onError.bind(observer), observer.onCompleted.bind(observer));
         });
     };
+    
+    observableProto.map = observableProto.select;
 
     function selectMany(selector) {
         return this.select(selector).mergeObservable();
@@ -180,6 +182,8 @@
         });
     };
 
+    observableProto.mapMany = observableProto.selectMany;
+    
     observableProto.skip = function (count) {
         if (count < 0) {
             throw new Error(argumentOutOfRange);
@@ -279,3 +283,5 @@
             }, observer.onError.bind(observer), observer.onCompleted.bind(observer));
         });
     };
+    
+    observableProto.filter = observableProto.where;

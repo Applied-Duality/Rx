@@ -65,6 +65,25 @@
         return hasSeed ? this.scan(seed, accumulator).startWith(seed).finalValue() : this.scan(accumulator).finalValue();
     };
 
+    observableProto.reduce = function () {
+        /// <summary>
+        /// Alias for aggregate. Applies an accumulator function over an observable sequence, returning the result of the aggregation as a single element in the result sequence. The specified seed value is used as the initial accumulator value.
+        /// For aggregation behavior with incremental intermediate results, see Observable.scan.
+        /// &#10;
+        /// &#10;1 - res = source.reduce(function (acc, x) { return acc + x; });
+        /// &#10;2 - res = source.reduce(function (acc, x) { return acc + x; }, 0);
+        /// </summary>
+        /// <param name="accumulator">An accumulator function to be invoked on each element.</param>
+        /// <param name="seed">[Optional] The initial accumulator value.</param>        
+        /// <returns>An observable sequence containing a single element with the final accumulator value.</returns>
+        var seed, hasSeed, accumulator = arguments[0];
+        if (arguments.length === 2) {
+            hasSeed = true;
+            seed = arguments[1];
+        } 
+        return hasSeed ? this.scan(seed, accumulator).startWith(seed).finalValue() : this.scan(accumulator).finalValue();
+    };
+    
     observableProto.any = function (predicate) {
         /// <summary>
         /// Determines whether any element of an observable sequence satisfies a condition if present, else if any items are in the sequence.
@@ -88,6 +107,18 @@
             });
     };
 
+    observableProto.some = function (predicate) {
+        /// <summary>
+        /// Alias for any. Determines whether any element of an observable sequence satisfies a condition if present, else if any items are in the sequence.
+        /// &#10;
+        /// &#10;1 - res = source.some();
+        /// &#10;2 - res = source.some(function (x) { return x > 3; });
+        /// </summary>
+        /// <param name="predicate">[Optional] A function to test each element for a condition.</param>
+        /// <returns>An observable sequence containing a single element determining whether any elements in the source sequence pass the test in the specified predicate if given, else if any items are in the sequence.</returns>
+        this.any.call(this, predicate);
+    };
+    
     observableProto.isEmpty = function () {
         /// <summary>
         /// Determines whether an observable sequence is empty.
@@ -111,6 +142,21 @@
         });
     };
 
+    observableProto.every = function (predicate) {
+        /// <summary>
+        /// Alias for all. Determines whether all elements of an observable sequence satisfy a condition.
+        /// &#10;
+        /// &#10;1 - res = source.every(function (value) { return value.length > 3; });
+        /// </summary>
+        /// <param name="predicate">A function to test each element for a condition.</param>
+        /// <returns>An observable sequence containing a single element determining whether all elements in the source sequence pass the test in the specified predicate.</returns>
+        return this.where(function (v) {
+            return !predicate(v);
+        }).any().select(function (b) {
+            return !b;
+        });
+    };
+    
     observableProto.contains = function (value, comparer) {
         /// <summary>
         /// Determines whether an observable sequence contains a specified element with an optional equality comparer.

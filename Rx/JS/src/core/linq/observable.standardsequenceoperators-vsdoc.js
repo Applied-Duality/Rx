@@ -214,6 +214,18 @@
         });
     };
 
+    observableProto.map = function (selector) {
+        /// <summary>
+        /// Alias for select. Projects each element of an observable sequence into a new form by incorporating the element's index.
+        /// &#10;
+        /// &#10;1 - source.map(function (value) { return value * value; });
+        /// &#10;2 - source.map(function (value, index) { return value * value + index; });
+        /// </summary>
+        /// <param name="selector">A transform function to apply to each source element; the second parameter of the function represents the index of the source element.</param>
+        /// <returns>An observable sequence whose elements are the result of invoking the transform function on each element of source.</returns>        
+        return this.select.apply(this, Array.prototype.slice.call(arguments));
+    };
+    
     function selectMany(selector) {
         return this.select(selector).mergeObservable();
     }
@@ -251,6 +263,28 @@
         });
     };
 
+    observableProto.mapMany = function () {
+        /// <summary>
+        /// Alias for selectMany.
+        /// One of the Following:
+        /// Projects each element of an observable sequence to an observable sequence and merges the resulting observable sequences into one observable sequence.
+        /// &#10;
+        /// &#10;1 - source.mapMany(function (x) { return Rx.Observable.range(0, x); });
+        /// Or:
+        /// Projects each element of an observable sequence to an observable sequence, invokes the result selector for the source element and each of the corresponding inner sequence's elements, and merges the results into one observable sequence.
+        /// &#10;
+        /// &#10;1 - source.mapMany(function (x) { return Rx.Observable.range(0, x); }, function (x, y) { return x + y; });
+        /// Or:
+        /// Projects each element of the source observable sequence to the other observable sequence and merges the resulting observable sequences into one observable sequence.
+        /// &#10;
+        /// &#10;1 - source.mapMany(Rx.Observable.fromArray([1,2,3]));
+        /// </summary>
+        /// <param name="selector">A transform function to apply to each element or an observable sequence to project each element from the source sequence onto.</param>
+        /// <param name="resultSelector">[Optional] A transform function to apply to each element of the intermediate sequence.</param>
+        /// <returns>An observable sequence whose elements are the result of invoking the one-to-many transform function collectionSelector on each element of the input sequence and then mapping each of those sequence elements and their corresponding source element to a result element.</returns>        
+        return this.selectMany.apply(this, Array.prototype.slice.call(arguments));
+    };
+    
     observableProto.skip = function (count) {
         /// <summary>
         /// Bypasses a specified number of elements in an observable sequence and then returns the remaining elements.
@@ -390,3 +424,15 @@
             }, observer.onError.bind(observer), observer.onCompleted.bind(observer));
         });
     };
+    
+    observableProto.filter = function (predicate) {
+        /// <summary>
+        /// Alias for where. Filters the elements of an observable sequence based on a predicate by incorporating the element's index.
+        /// &#10;
+        /// &#10;1 - source.filter(function (value) { return value < 10; });
+        /// &#10;1 - source.filter(function (value, index) { return value < 10 || index < 10; });
+        /// </summary>
+        /// <param name="predicate">A function to test each source element for a conditio; the second parameter of the function represents the index of the source element.</param>
+        /// <returns>An observable sequence that contains elements from the input sequence that satisfy the condition.</returns>        
+        return this.where.apply(this, Array.prototype.slice.call(arguments));        
+    };    
