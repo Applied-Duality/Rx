@@ -193,7 +193,7 @@ and limitations under the License.
     Enumerable.cases = function (selector, sources, defaultSource) {
         defaultSource || (defaultSource = enumerableEmpty());
         return enumerableDefer(function () {
-            var result = sources[selector()]
+            var result = sources[selector()];
             if (!result) {
                 result = defaultSource;
             }
@@ -271,7 +271,7 @@ and limitations under the License.
         return source.concat(enumerableWhile(condition, source));
     };
 
-    enumerableProto.expand = function(selector) {
+    EnumerablePrototype.expand = function(selector) {
         var parent = this;
         return enumerableCreate(function () {
             var current, q = [parent], innerEnumerator;
@@ -490,7 +490,7 @@ and limitations under the License.
         });
     };
 
-    function scan (source, seed, accumulator) {
+    function scan (seed, accumulator) {
         var source = this;
         return enumerableDefer(function () {
             var accumulation, hasAccumulation = false;
@@ -520,7 +520,7 @@ and limitations under the License.
                 return accumulation;
             });
         });
-    };    
+    }    
 
     EnumerablePrototype.scan = function (/* seed, accumulator */) {
         var f = arguments.length === 1 ? scan1 : scan;
@@ -639,7 +639,7 @@ and limitations under the License.
         this.list = {};
     };
     RefCountListPrototype.get = function (index) {
-        var res = this.list[index]
+        var res = this.list[index];
         if (!res) {
             throw new Error('Elemented no longer in the buffer');
         }
@@ -661,7 +661,7 @@ and limitations under the License.
         this.readerCount--;
     };
 
-    function MaxRefCountList = function () {
+    function MaxRefCountList() {
         this.list = [];
         this.count = 0;
     }
