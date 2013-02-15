@@ -1,55 +1,63 @@
+    
+    /**
+     * Propagates the observable sequence that reacts first.
+     * 
+     * @param rightSource Second observable sequence.
+     * @return An observable sequence that surfaces either of the given sequences, whichever reacted first.
+     */  
     observableProto.amb = function (rightSource) {
         var leftSource = this;
         return new AnonymousObservable(function (observer) {
 
             var choice,
+                leftChoice = 'L', rightChoice = 'R',
                 leftSubscription = new SingleAssignmentDisposable(),
                 rightSubscription = new SingleAssignmentDisposable();
 
             function choiceL() {
                 if (!choice) {
-                    choice = 'L';
+                    choice = leftChoice;
                     rightSubscription.dispose();
                 }
             }
 
             function choiceR() {
                 if (!choice) {
-                    choice = 'R';
+                    choice = rightChoice;
                     leftSubscription.dispose();
                 }
             }
 
             leftSubscription.setDisposable(leftSource.subscribe(function (left) {
                 choiceL();
-                if (choice === 'L') {
+                if (choice === leftChoice) {
                     observer.onNext(left);
                 }
             }, function (err) {
                 choiceL();
-                if (choice === 'L') {
+                if (choice === leftChoice) {
                     observer.onError(err);
                 }
             }, function () {
                 choiceL();
-                if (choice === 'L') {
+                if (choice === leftChoice) {
                     observer.onCompleted();
                 }
             }));
 
             rightSubscription.setDisposable(rightSource.subscribe(function (right) {
                 choiceR();
-                if (choice === 'R') {
+                if (choice === rightChoice) {
                     observer.onNext(right);
                 }
             }, function (err) {
                 choiceR();
-                if (choice === 'R') {
+                if (choice === rightChoice) {
                     observer.onError(err);
                 }
             }, function () {
                 choiceR();
-                if (choice === 'R') {
+                if (choice === rightChoice) {
                     observer.onCompleted();
                 }
             }));
@@ -58,6 +66,13 @@
         });
     };
 
+    /**
+     * Propagates the observable sequence that reacts first.
+     * 
+     * E.g. winner = Rx.Observable.amb(xs, ys, zs);
+     * 
+     * @return An observable sequence that surfaces any of the given sequences, whichever reacted first.
+     */  
     Observable.amb = function () {
         var acc = observableNever(),
             items = argsOrArray(arguments, 0);
@@ -90,6 +105,15 @@
         });
     }
 
+    /**
+     * Continues an observable sequence that is terminated by an exception with the next observable sequence.
+     * 
+     * 1 - xs.catchException(ys)
+     * 2 - xs.catchException(function (ex) { return ys(ex); })
+     * 
+     * @param {Mixed} handlerOrSecond Exception handler function that returns an observable sequence given the error that occurred in the first sequence, or a second observable sequence used to produce results when an error occurred in the first sequence.
+     * @return An observable sequence containing the first sequence's elements, followed by the elements of the handler sequence in case an exception occurred.
+     */      
     observableProto.catchException = function (handlerOrSecond) {
         if (typeof handlerOrSecond === 'function') {
             return observableCatchHandler(this, handlerOrSecond);
@@ -97,14 +121,53 @@
         return observableCatch([this, handlerOrSecond]);
     };
 
+    /**
+     * Continues an observable sequence that is terminated by an exception with the next observable sequence.
+     * 
+     * 1 - res = Rx.Observable.catchException(xs, ys, zs);
+     * 2 - res = Rx.Observable.catchException([xs, ys, zs]);
+     * 
+     * @return An observable sequence containing elements from consecutive source sequences until a source sequence terminates successfully.
+     */
     var observableCatch = Observable.catchException = function () {
         var items = argsOrArray(arguments, 0);
         return enumerableFor(items).catchException();
     };
 
+    /**
+     * Merges the specified observable sequences into one observable sequence by using the selector function whenever any of the observable sequences produces an element.
+     * This can be in the form of an argument list of observables or an array.
+     * 
+     * 1 - obs = observable.combineLatest(obs1, obs2, obs3, function (o1, o2, o3) { return o1 + o2 + o3; });
+     * 2 - obs = observable.combineLatest([obs1, obs2, obs3], function (o1, o2, o3) { return o1 + o2 + o3; });
+     * 
+     * @return An observable sequence containing the result of combining elements of the sources using the specified result selector function. 
+     */
     observableProto.combineLatest = function () {
-        var parent = this, args = slice.call(arguments), resultSelector = args.pop();
-        args.unshift(this);
+        var args = slice.call(arguments);
+        if (Array.isArray(args[0])) {
+            args[0].unshift(this);
+        } else {
+            args.unshift(this);
+        }
+        return combineLatest.apply(this, args);
+    };
+
+    /**
+     * Merges the specified observable sequences into one observable sequence by using the selector function whenever any of the observable sequences produces an element.
+     * 
+     * 1 - obs = Rx.Observable.combineLatest(obs1, obs2, obs3, function (o1, o2, o3) { return o1 + o2 + o3; });
+     * 2 - obs = Rx.Observable.combineLatest([obs1, obs2, obs3], function (o1, o2, o3) { return o1 + o2 + o3; });     
+     * 
+     * @return An observable sequence containing the result of combining elements of the sources using the specified result selector function.
+     */
+    var combineLatest = Observable.combineLatest = function () {
+        var args = slice.call(arguments), resultSelector = args.pop();
+        
+        if (Array.isArray(args[0])) {
+            args = args[0];
+        }
+
         return new AnonymousObservable(function (observer) {
             var falseFactory = function () { return false; },
                 n = args.length,
@@ -118,7 +181,7 @@
                 hasValue[i] = true;
                 if (hasValueAll || (hasValueAll = hasValue.every(function (x) { return x; }))) {
                     try {
-                        res = resultSelector.apply(parent, values);
+                        res = resultSelector.apply(null, values);
                     } catch (ex) {
                         observer.onError(ex);
                         return;
@@ -153,21 +216,52 @@
         });
     };
 
+    /**
+     * Concatenates all the observable sequences.  This takes in either an array or variable arguments to concatenate.
+     * 
+     * 1 - concatenated = xs.concat(ys, zs);
+     * 2 - concatenated = xs.concat([ys, zs]);
+     * 
+     * @return An observable sequence that contains the elements of each given sequence, in sequential order. 
+     */ 
     observableProto.concat = function () {
         var items = slice.call(arguments, 0);
         items.unshift(this);
         return observableConcat.apply(this, items);
     };
 
+    /**
+     * Concatenates all the observable sequences.
+     * 
+     * 1 - res = Rx.Observable.concat(xs, ys, zs);
+     * 2 - res = Rx.Observable.concat([xs, ys, zs]);
+     * 
+     * @return An observable sequence that contains the elements of each given sequence, in sequential order. 
+     */
     var observableConcat = Observable.concat = function () {
         var sources = argsOrArray(arguments, 0);
         return enumerableFor(sources).concat();
     };    
 
-    observableProto.concatObservable = function () {
+    /**
+     * Concatenates an observable sequence of observable sequences.
+     * 
+     * @return An observable sequence that contains the elements of each observed inner sequence, in sequential order. 
+     */ 
+    observableProto.concatObservable = observableProto.concatAll =function () {
         return this.merge(1);
     };
 
+    /**
+     * Merges an observable sequence of observable sequences into an observable sequence, limiting the number of concurrent subscriptions to inner sequences.
+     * Or merges two observable sequences into a single observable sequence.
+     * 
+     * 1 - merged = sources.merge(1);
+     * 2 - merged = source.merge(otherSource);  
+     * 
+     * @param [maxConcurrentOrOther] Maximum number of inner observable sequences being subscribed to concurrently or the second observable sequence.
+     * @return The observable sequence that merges the elements of the inner sequences. 
+     */ 
     observableProto.merge = function (maxConcurrentOrOther) {
         if (typeof maxConcurrentOrOther !== 'number') {
             return observableMerge(this, maxConcurrentOrOther);
@@ -212,6 +306,18 @@
         });
     };
 
+    /**
+     * Merges all the observable sequences into a single observable sequence.  
+     * The scheduler is optional and if not specified, the immediate scheduler is used.
+     * 
+     * 1 - merged = Rx.Observable.merge(xs, ys, zs);
+     * 2 - merged = Rx.Observable.merge([xs, ys, zs]);
+     * 3 - merged = Rx.Observable.merge(scheduler, xs, ys, zs);
+     * 4 - merged = Rx.Observable.merge(scheduler, [xs, ys, zs]);    
+     * 
+     * 
+     * @return The observable sequence that merges the elements of the observable sequences. 
+     */  
     var observableMerge = Observable.merge = function () {
         var scheduler, sources;
         if (!arguments[0]) {
@@ -230,7 +336,12 @@
         return observableFromArray(sources, scheduler).mergeObservable();
     };    
 
-    observableProto.mergeObservable = function () {
+    /**
+     * Merges an observable sequence of observable sequences into an observable sequence.
+     * 
+     * @return The observable sequence that merges the elements of the inner sequences.   
+     */  
+    observableProto.mergeObservable = observableProto.mergeAll =function () {
         var sources = this;
         return new AnonymousObservable(function (observer) {
             var group = new CompositeDisposable(),
@@ -258,6 +369,12 @@
         });
     };
 
+    /**
+     * Continues an observable sequence that is terminated normally or by an exception with the next observable sequence.
+     * 
+     * @param second Second observable sequence used to produce results after the first sequence terminates.
+     * @return An observable sequence that concatenates the first and second sequence, even if the first sequence terminates exceptionally.
+     */
     observableProto.onErrorResumeNext = function (second) {
         if (!second) {
             throw new Error('Second observable is required');
@@ -265,6 +382,14 @@
         return onErrorResumeNext([this, second]);
     };
 
+    /**
+     * Continues an observable sequence that is terminated normally or by an exception with the next observable sequence.
+     * 
+     * 1 - res = Rx.Observable.onErrorResumeNext(xs, ys, zs);
+     * 1 - res = Rx.Observable.onErrorResumeNext([xs, ys, zs]);
+     * 
+     * @return An observable sequence that concatenates the source sequences, even if a sequence terminates exceptionally.   
+     */
     var onErrorResumeNext = Observable.onErrorResumeNext = function () {
         var sources = argsOrArray(arguments, 0);
         return new AnonymousObservable(function (observer) {
@@ -288,6 +413,12 @@
         });
     };
 
+    /**
+     * Returns the values from the source observable sequence only after the other observable sequence produces a value.
+     * 
+     * @param other The observable sequence that triggers propagation of elements of the source sequence.
+     * @return An observable sequence containing the elements of the source sequence starting from the point the other sequence triggered propagation.    
+     */
     observableProto.skipUntil = function (other) {
         var source = this;
         return new AnonymousObservable(function (observer) {
@@ -315,6 +446,11 @@
         });
     };
 
+    /**
+     * Transforms an observable sequence of observable sequences into an observable sequence producing values only from the most recent observable sequence.
+     * 
+     * @return The observable sequence that at any point in time produces the elements of the most recent inner observable sequence that has been received.  
+     */
     observableProto.switchLatest = function () {
         var sources = this;
         return new AnonymousObservable(function (observer) {
@@ -352,6 +488,12 @@
         });
     };
 
+    /**
+     * Returns the values from the source observable sequence until the other observable sequence produces a value.
+     * 
+     * @param other Observable sequence that terminates propagation of elements of the source sequence.
+     * @return An observable sequence containing the elements of the source sequence up to the point the other sequence interrupted further propagation.   
+     */
     observableProto.takeUntil = function (other) {
         var source = this;
         return new AnonymousObservable(function (observer) {
@@ -383,6 +525,14 @@
         });
     }    
 
+    /**
+     * Merges the specified observable sequences into one observable sequence by using the selector function whenever all of the observable sequences or an array have produced an element at a corresponding index.
+     * The last element in the arguments must be a function to invoke for each series of elements at corresponding indexes in the sources.
+     * 1 - res = obs1.zip(obs2, fn);
+     * 1 - res = x1.zip([1,2,3], fn);  
+     * 
+     * @return An observable sequence containing the result of combining elements of the sources using the specified result selector function. 
+     */   
     observableProto.zip = function () {
         if (Array.isArray(arguments[0])) {
             return zipArray.apply(this, arguments);
