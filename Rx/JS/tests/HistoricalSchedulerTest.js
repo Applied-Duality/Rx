@@ -21,7 +21,7 @@
 
     function time(days) {
         var d = new Date(1979,10,31,4,30,15);
-        d.setDate(d.getDate() + days);
+        d.setUTCDate(d.getUTCDate() + days);
         return d.getTime();
     }
 
@@ -264,8 +264,8 @@
 
         s.advanceBy(fromDays(90));
 
-        equal(time(100), s.now());
-        equal(time(100), s.clock);
+        equal(time(100), s.now(), 'sad');
+        equal(time(100), s.clock, 'happy');
 
         arrayEquals(list, [
             new Timestamped(0, time(0)),
