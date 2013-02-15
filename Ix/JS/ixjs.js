@@ -552,7 +552,7 @@ and limitations under the License.
                     enumerator.dispose();
                 });
         });
-    };    
+    };
 
     EnumerablePrototype.startWith = function () {
         return enumerableConcat(enumerableFromArray(slice.call(arguments)), this);
