@@ -271,7 +271,7 @@ and limitations under the License.
         return source.concat(enumerableWhile(condition, source));
     };
 
-    enumerableProto.expand = function(selector) {
+    EnumerablePrototype.expand = function(selector) {
         var parent = this;
         return enumerableCreate(function () {
             var current, q = [parent], innerEnumerator;
@@ -552,7 +552,7 @@ and limitations under the License.
                     enumerator.dispose();
                 });
         });
-    };    
+    };
 
     EnumerablePrototype.startWith = function () {
         return enumerableConcat(enumerableFromArray(slice.call(arguments)), this);
