@@ -264,8 +264,8 @@
 
         s.advanceBy(fromDays(90));
 
-        equal(time(100), s.now(),);
-        equal(time(100), s.clock,);
+        equal(time(100), s.now());
+        equal(time(100), s.clock);
 
         arrayEquals(list, [
             new Timestamped(0, time(0)),
