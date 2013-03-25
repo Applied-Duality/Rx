@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <NuGetDir>$(OutDir)\NuGet\</NuGetDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectToBuild Include="NuGet\BuildAll.proj">
+      <Properties>OutDir=$(NuGetDir);RxRelease=$(RxRelease)</Properties>
+    </ProjectToBuild>
+  </ItemGroup>
+  <Target Name="Build">
+    <MSBuild Projects="@(ProjectToBuild)" Targets="Build" />
+  </Target>
+  <Target Name="Clean">
+    <MSBuild Projects="@(ProjectToBuild)" Targets="Clean" />
+  </Target>
+  <Target Name="Rebuild">
+    <MSBuild Projects="@(ProjectToBuild)" Targets="Rebuild" />
+  </Target>
+</Project>
